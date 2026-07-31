@@ -10,10 +10,10 @@ export const site = {
     facebook: "https://facebook.com/yamura"
   },
   footerText:
-    "Projektujemy i produkujemy meble na wymiar do domów, mieszkań, biur i lokali komercyjnych.",
+    "Polska firma projektująca i produkująca meble na wymiar do domów, mieszkań, biur i lokali komercyjnych.",
   seo: {
     title: "YAMURA - meble na wymiar",
     description:
-      "Projektujemy i produkujemy meble na wymiar do domów, mieszkań, biur i lokali komercyjnych. Indywidualny projekt, wysoka jakość i kompleksowa realizacja."
+      "Polska firma projektująca i produkująca meble na wymiar do domów, mieszkań, biur i lokali komercyjnych. Polski kapitał, lokalna produkcja i japońska precyzja."
   }
 } as const;
