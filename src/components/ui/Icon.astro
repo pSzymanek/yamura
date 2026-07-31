@@ -1,0 +1,43 @@
+---
+import type { Benefit } from "../../types";
+
+type Props = {
+  name: Benefit["icon"];
+};
+
+const { name } = Astro.props;
+const common = {
+  width: 40,
+  height: 40,
+  viewBox: "0 0 48 48",
+  fill: "none",
+  "aria-hidden": true
+};
+---
+
+<svg {...common} class="icon-line">
+  {name === "plan" && (
+    <>
+      <rect x="9" y="8" width="26" height="32" rx="2" />
+      <path d="M15 16h14M15 23h14M15 30h8M33 31l4 4 8-9" />
+    </>
+  )}
+  {name === "quality" && (
+    <>
+      <path d="M24 5l5.4 10.9 12 1.7-8.7 8.5 2.1 12-10.8-5.7-10.8 5.7 2.1-12-8.7-8.5 12-1.7L24 5Z" />
+      <path d="M18 24l4 4 8-9" />
+    </>
+  )}
+  {name === "service" && (
+    <>
+      <path d="M14 32l-5 5 2 2 5-5M33 13l5-5 2 2-5 5M18 18l12 12" />
+      <path d="M12 9l27 27M30 9l9 9M9 30l9 9" />
+    </>
+  )}
+  {name === "local" && (
+    <>
+      <path d="M24 5c8 6 12 13 12 21 0 7-5 13-12 17-7-4-12-10-12-17 0-8 4-15 12-21Z" />
+      <path d="M18 25c4-1 8-4 12-9 1 7-1 13-6 17-3-2-5-4-6-8Z" />
+    </>
+  )}
+</svg>

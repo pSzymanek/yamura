@@ -1,0 +1,30 @@
+---
+import { navigation } from "../../data/navigation";
+---
+
+<header class="site-header" data-header>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <div class="site-header__inner">
+    <a class="site-header__logo" href="/" aria-label="YAMURA - strona główna">
+      <img src="/images/logo/yamura-light.png" alt="YAMURA" width="250" height="62" />
+    </a>
+    <nav class="site-header__nav" aria-label="Nawigacja główna">
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="site-header__quote" href="/kontakt/">Wyceń projekt</a>
+    <button class="site-header__menu" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false">
+      <span>Menu</span>
+      <i aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <nav aria-label="Nawigacja mobilna">
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+      <a class="mobile-menu__quote" href="/kontakt/">Wyceń projekt</a>
+    </nav>
+  </div>
+</header>

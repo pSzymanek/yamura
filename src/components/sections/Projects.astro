@@ -1,0 +1,46 @@
+---
+import { projectFilters, projects } from "../../data/projects";
+import ProjectCard from "../ui/ProjectCard.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="projects section-light" id="realizacje">
+  <div class="section-inner">
+    <SectionHeading
+      eyebrow="Realizacje"
+      title="Różne wnętrza. Jeden standard wykonania."
+      text="Zobacz wybrane realizacje - od spokojnych zabudów w naturalnym drewnie po nowoczesne i kolorowe projekty."
+    />
+    <div class="project-filters" role="toolbar" aria-label="Filtry realizacji" data-project-filters>
+      {projectFilters.map((filter) => (
+        <button type="button" data-filter={filter} aria-pressed={filter === "Wszystkie" ? "true" : "false"}>
+          {filter}
+        </button>
+      ))}
+    </div>
+    <div class="projects__grid" data-project-grid>
+      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+    </div>
+  </div>
+  <dialog class="project-dialog" data-project-dialog aria-label="Podgląd realizacji">
+    <button class="project-dialog__close" type="button" data-dialog-close aria-label="Zamknij podgląd">×</button>
+    <button class="project-dialog__nav project-dialog__nav--prev" type="button" data-dialog-prev aria-label="Poprzednia realizacja">←</button>
+    <figure>
+      <img data-dialog-image src="/images/projects/kuchnia-dab.webp" alt="" width="1100" height="760" />
+      <figcaption>
+        <small data-dialog-category></small>
+        <h3 data-dialog-title></h3>
+        <p data-dialog-description></p>
+        <span data-dialog-location></span>
+      </figcaption>
+    </figure>
+    <button class="project-dialog__nav project-dialog__nav--next" type="button" data-dialog-next aria-label="Następna realizacja">→</button>
+  </dialog>
+  <script is:inline define:vars={{ projects }}>
+    window.YAMURA_PROJECTS = projects;
+  </script>
+  <script>
+    import "../../scripts/projectFilters";
+    import "../../scripts/lightbox";
+  </script>
+</section>

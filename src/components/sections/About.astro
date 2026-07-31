@@ -1,0 +1,23 @@
+---
+import Button from "../ui/Button.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="about section-warm" id="o-nas">
+  <div class="section-inner about__grid">
+    <div class="about__image" data-reveal>
+      <img src="/images/projects/pracownia.webp" alt="Pracownia stolarska i przygotowanie mebli" width="780" height="920" loading="lazy" />
+    </div>
+    <div class="about__copy">
+      <SectionHeading
+        eyebrow="O nas"
+        title="Meble tworzone dla konkretnych ludzi i konkretnych przestrzeni."
+        align="left"
+      />
+      <p data-reveal>
+        Każde wnętrze, potrzeba i sposób życia są inne. Dlatego nie ograniczamy się do jednego stylu. Projektujemy rozwiązania dopasowane do przestrzeni, funkcji, budżetu i charakteru właściciela.
+      </p>
+      <Button href="/kontakt/" variant="outline">Poznaj Yamura</Button>
+    </div>
+  </div>
+</section>

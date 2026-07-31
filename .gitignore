@@ -1,0 +1,15 @@
+node_modules/
+.astro/
+dist/
+export/
+
+.env
+.env.*
+!.env.example
+
+*.log
+*.pid
+*.job
+
+.DS_Store
+Thumbs.db

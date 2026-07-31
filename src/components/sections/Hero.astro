@@ -1,0 +1,25 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__image">
+    <img src="/images/hero/kuchnia-salon.webp" alt="Nowoczesna kuchnia z drewnianą zabudową i wyspą" width="1536" height="1024" fetchpriority="high" />
+  </div>
+  <div class="hero__copy" data-reveal>
+    <img class="hero__logo" src="/images/logo/yamura-dark.png" alt="YAMURA" width="520" height="126" />
+    <h1 id="hero-title">Tworzymy meble<br />dopasowane do Ciebie</h1>
+    <span aria-hidden="true"></span>
+    <p>
+      Projektujemy i produkujemy meble, które łączą estetykę, funkcjonalność i najwyższą jakość wykonania.
+    </p>
+    <div class="hero__actions">
+      <Button href="#o-nas">Poznaj nas</Button>
+      <a class="hero__arrow" href="#oferta" aria-label="Przejdź do oferty">
+        <svg viewBox="0 0 42 14" aria-hidden="true">
+          <path d="M1 7h38m-6-6 7 6-7 6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

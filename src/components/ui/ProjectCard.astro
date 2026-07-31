@@ -1,0 +1,27 @@
+---
+import type { Project } from "../../types";
+
+type Props = {
+  project: Project;
+  index: number;
+};
+
+const { project, index } = Astro.props;
+---
+
+<article
+  class={`project-card ${project.featured ? "project-card--featured" : ""}`}
+  data-project-card
+  data-project-filters={project.filters.join(",")}
+  data-project-index={index}
+  data-reveal
+>
+  <button class="project-card__button" type="button" aria-label={`Otwórz realizację: ${project.title}`}>
+    <img src={project.image} alt={project.alt} width="760" height="560" loading="lazy" />
+    <span class="project-card__meta">{project.category}</span>
+    <span class="project-card__content">
+      <strong>{project.title}</strong>
+      <small>{project.location}</small>
+    </span>
+  </button>
+</article>

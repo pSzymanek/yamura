@@ -1,0 +1,64 @@
+---
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import { site } from "../data/site";
+import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  canonical?: string;
+};
+
+const {
+  title = site.seo.title,
+  description = site.seo.description,
+  canonical = site.url + Astro.url.pathname
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "FurnitureStore"],
+  name: site.name,
+  url: site.url,
+  telephone: site.phone,
+  email: site.email,
+  areaServed: "Polska",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Śląsk",
+    addressCountry: "PL"
+  }
+};
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/navigation";
+      import "../scripts/reveal";
+    </script>
+  </body>
+</html>

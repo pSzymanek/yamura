@@ -1,0 +1,19 @@
+---
+import { processSteps } from "../../data/process";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="process section-warm" id="proces">
+  <div class="section-inner">
+    <SectionHeading eyebrow="Jak pracujemy" title="Od pierwszej rozmowy do gotowego montażu." />
+    <ol class="process__list">
+      {processSteps.map((step) => (
+        <li data-reveal>
+          <span>{step.number}</span>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

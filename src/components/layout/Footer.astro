@@ -1,0 +1,30 @@
+---
+import { navigation } from "../../data/navigation";
+import { site } from "../../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <img src="/images/logo/yamura-light.png" alt="YAMURA" width="260" height="64" loading="lazy" />
+      <p>{site.footerText}</p>
+    </div>
+    <nav aria-label="Nawigacja w stopce">
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <address>
+      <a href={`tel:${site.phone.replaceAll(" ", "")}`}>{site.phone}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>{site.location}</span>
+      <span>{site.hours}</span>
+    </address>
+    <div class="site-footer__bottom">
+      <p>© {year} YAMURA. Wszystkie prawa zastrzeżone.</p>
+      <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+    </div>
+  </div>
+</footer>

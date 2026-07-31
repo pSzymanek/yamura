@@ -1,0 +1,18 @@
+---
+import { benefits } from "../../data/benefits";
+import Icon from "../ui/Icon.astro";
+---
+
+<section class="benefits-bar" aria-label="Korzyści współpracy z YAMURA">
+  <div class="benefits-bar__inner">
+    {benefits.map((benefit) => (
+      <article class="benefit-item" data-reveal>
+        <Icon name={benefit.icon} />
+        <div>
+          <h3>{benefit.title}</h3>
+          <p>{benefit.text}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

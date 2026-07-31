@@ -1,0 +1,17 @@
+---
+import type { Category } from "../../types";
+
+type Props = {
+  category: Category;
+};
+
+const { category } = Astro.props;
+---
+
+<a class="category-card" href={`/realizacje/#${category.slug}`} data-reveal>
+  <img src={category.image} alt={category.alt} width="560" height="380" loading="lazy" />
+  <span>{category.title}</span>
+  <svg aria-hidden="true" viewBox="0 0 24 24">
+    <path d="M5 12h13m-5-5 5 5-5 5" />
+  </svg>
+</a>

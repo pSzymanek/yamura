@@ -1,0 +1,86 @@
+---
+import { site } from "../../data/site";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="contact section-light" id="kontakt">
+  <div class="section-inner contact__grid">
+    <div class="contact__details" data-reveal>
+      <SectionHeading eyebrow="Kontakt" title="Porozmawiajmy o Twojej realizacji." align="left" />
+      <dl>
+        <div>
+          <dt>Telefon</dt>
+          <dd><a href={`tel:${site.phone.replaceAll(" ", "")}`}>{site.phone}</a></dd>
+        </div>
+        <div>
+          <dt>E-mail</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+        </div>
+        <div>
+          <dt>Lokalizacja</dt>
+          <dd>{site.location}</dd>
+        </div>
+        <div>
+          <dt>Godziny kontaktu</dt>
+          <dd>{site.hours}</dd>
+        </div>
+      </dl>
+      <div class="contact__social">
+        <a href={site.social.instagram}>Instagram</a>
+        <a href={site.social.facebook}>Facebook</a>
+      </div>
+    </div>
+    <form class="contact-form" data-contact-form novalidate>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      <label>
+        <span>Imię i nazwisko</span>
+        <input name="name" type="text" autocomplete="name" required minlength="3" />
+      </label>
+      <label>
+        <span>E-mail</span>
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+      <label>
+        <span>Telefon</span>
+        <input name="phone" type="tel" autocomplete="tel" required />
+      </label>
+      <label>
+        <span>Rodzaj realizacji</span>
+        <select name="type" required>
+          <option value="">Wybierz</option>
+          <option>Kuchnia</option>
+          <option>Salon</option>
+          <option>Garderoba</option>
+          <option>Łazienka</option>
+          <option>Biuro</option>
+          <option>Lokal komercyjny</option>
+          <option>Inne</option>
+        </select>
+      </label>
+      <label>
+        <span>Lokalizacja realizacji</span>
+        <input name="location" type="text" autocomplete="address-level2" />
+      </label>
+      <label>
+        <span>Szacowany termin</span>
+        <input name="timeline" type="text" placeholder="np. jesień 2026" />
+      </label>
+      <label class="contact-form__wide">
+        <span>Wiadomość</span>
+        <textarea name="message" rows="5" required minlength="20"></textarea>
+      </label>
+      <label class="contact-form__consent">
+        <input name="consent" type="checkbox" required />
+        <span>Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania.</span>
+      </label>
+      <button class="btn btn--dark contact-form__submit" type="submit">Wyślij zapytanie</button>
+      <p class="contact-form__note">
+        Formularz jest przygotowany po stronie interfejsu. Miejsce podłączenia API znajduje się w pliku
+        <code>src/scripts/contactForm.ts</code>.
+      </p>
+    </form>
+  </div>
+  <script>
+    import "../../scripts/contactForm";
+  </script>
+</section>
