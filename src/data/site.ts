@@ -14,6 +14,6 @@ export const site = {
   seo: {
     title: "YAMURA - meble na wymiar",
     description:
-      "Polska firma projektująca i produkująca meble na wymiar do domów, mieszkań, biur i lokali komercyjnych. Polski kapitał, lokalna produkcja i japońska precyzja."
+      "Polska firma projektująca i produkująca meble na wymiar do domów, mieszkań, biur i lokali komercyjnych. Lokalna produkcja i japońska precyzja."
   }
 } as const;
