@@ -11,6 +11,11 @@ type PhotoAsset = {
   height: number;
 };
 
+type LocalImageAsset = {
+  input: string;
+  file: string;
+};
+
 const root = process.cwd();
 const logoSources = {
   light: "C:/Users/poczt/Downloads/ChatGPT Image 30 lip 2026, 12_51_05 (1).png",
@@ -19,47 +24,30 @@ const logoSources = {
 
 const heroSource = "C:/Users/poczt/Downloads/ChatGPT Image 31 lip 2026, 13_11_25.png";
 
+const categorySources: LocalImageAsset[] = [
+  {
+    input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_55.png",
+    file: "public/images/categories/kuchnie.webp"
+  },
+  {
+    input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_51.png",
+    file: "public/images/categories/salony.webp"
+  },
+  {
+    input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_47.png",
+    file: "public/images/categories/lazienki.webp"
+  },
+  {
+    input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_43.png",
+    file: "public/images/categories/biura.webp"
+  },
+  {
+    input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_33.png",
+    file: "public/images/categories/inne.webp"
+  }
+];
+
 const photos: PhotoAsset[] = [
-  {
-    id: "35430097",
-    file: "public/images/categories/kuchnie.webp",
-    credit: "Peter Vang / Pexels",
-    source: "https://www.pexels.com/photo/spacious-wooden-kitchen-with-central-island-35430097/",
-    width: 760,
-    height: 500
-  },
-  {
-    id: "6489108",
-    file: "public/images/categories/salony.webp",
-    credit: "Max Vakhtbovych / Pexels",
-    source: "https://www.pexels.com/photo/modern-room-with-cupboards-and-wardrobe-6489108/",
-    width: 760,
-    height: 500
-  },
-  {
-    id: "34000145",
-    file: "public/images/categories/lazienki.webp",
-    credit: "Juventa Bathroom Furniture / Pexels",
-    source: "https://www.pexels.com/photo/modern-bathroom-vanity-with-double-sink-and-drawer-34000145/",
-    width: 760,
-    height: 500
-  },
-  {
-    id: "33827327",
-    file: "public/images/categories/biura.webp",
-    credit: "Capture Crew / Pexels",
-    source: "https://www.pexels.com/photo/modern-office-interior-with-yellow-sofa-33827327/",
-    width: 760,
-    height: 500
-  },
-  {
-    id: "7746589",
-    file: "public/images/categories/inne.webp",
-    credit: "Max Vakhtbovych / Pexels",
-    source: "https://www.pexels.com/photo/kitchen-with-red-wooden-cabinet-near-fireplace-7746589/",
-    width: 760,
-    height: 500
-  },
   {
     id: "19878503",
     file: "public/images/projects/kuchnia-dab.webp",
@@ -191,6 +179,17 @@ async function prepareHero() {
     .toFile(path.join(root, output));
 }
 
+async function prepareCategory(asset: LocalImageAsset) {
+  await ensureDirFor(asset.file);
+  await sharp(asset.input)
+    .resize(760, 500, {
+      fit: "contain",
+      background: { r: 247, g: 244, b: 240, alpha: 1 }
+    })
+    .webp({ quality: 88 })
+    .toFile(path.join(root, asset.file));
+}
+
 async function writeCredits() {
   const lines = [
     "# Image credits",
@@ -198,13 +197,19 @@ async function writeCredits() {
     "Zdjecia demonstracyjne zapisane lokalnie w `public/images/`. Przed publikacja warto podmienic je na prawdziwe realizacje YAMURA.",
     "",
     "- public/images/hero/kuchnia-salon.webp: wizualizacja dostarczona przez klienta",
+    ...categorySources.map((asset) => `- ${asset.file}: wizualizacja dostarczona przez klienta`),
     ...photos.map((photo) => `- ${photo.file}: ${photo.credit} - ${photo.source}`)
   ];
   await writeFile(path.join(root, "IMAGE_CREDITS.md"), `${lines.join("\n")}\n`, "utf8");
 }
 
-await transparentLogo(logoSources.dark, "public/images/logo/yamura-dark.png");
-await transparentLogo(logoSources.light, "public/images/logo/yamura-light.png");
-await prepareHero();
-await Promise.all(photos.map(downloadPhoto));
+await Promise.all(categorySources.map(prepareCategory));
+
+if (!process.argv.includes("--categories-only")) {
+  await transparentLogo(logoSources.dark, "public/images/logo/yamura-dark.png");
+  await transparentLogo(logoSources.light, "public/images/logo/yamura-light.png");
+  await prepareHero();
+  await Promise.all(photos.map(downloadPhoto));
+}
+
 await writeCredits();
