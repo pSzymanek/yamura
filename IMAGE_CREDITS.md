@@ -3,11 +3,11 @@
 Zdjecia demonstracyjne zapisane lokalnie w `public/images/`. Przed publikacja warto podmienic je na prawdziwe realizacje YAMURA.
 
 - public/images/hero/kuchnia-salon.webp: wizualizacja dostarczona przez klienta
-- public/images/categories/kuchnie.webp: wizualizacja dostarczona przez klienta
-- public/images/categories/salony.webp: wizualizacja dostarczona przez klienta
-- public/images/categories/lazienki.webp: wizualizacja dostarczona przez klienta
-- public/images/categories/biura.webp: wizualizacja dostarczona przez klienta
-- public/images/categories/inne.webp: wizualizacja dostarczona przez klienta
+- public/images/categories/kuchnie-projekt.webp: wizualizacja dostarczona przez klienta
+- public/images/categories/salony-projekt.webp: wizualizacja dostarczona przez klienta
+- public/images/categories/lazienki-projekt.webp: wizualizacja dostarczona przez klienta
+- public/images/categories/biura-projekt.webp: wizualizacja dostarczona przez klienta
+- public/images/categories/inne-projekt.webp: wizualizacja dostarczona przez klienta
 - public/images/projects/kuchnia-dab.webp: Lisa Anna / Pexels - https://www.pexels.com/photo/kitchen-interior-with-oak-wood-furniture-19878503/
 - public/images/projects/jasny-apartament.webp: Max Vakhtbovych / Pexels - https://www.pexels.com/photo/modern-room-with-cupboards-and-wardrobe-6489108/
 - public/images/projects/zielona-kuchnia.webp: Max Vakhtbovych / Pexels - https://www.pexels.com/photo/an-interior-of-a-home-7746034/

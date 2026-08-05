@@ -27,23 +27,23 @@ const heroSource = "C:/Users/poczt/Downloads/ChatGPT Image 31 lip 2026, 13_11_25
 const categorySources: LocalImageAsset[] = [
   {
     input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_55.png",
-    file: "public/images/categories/kuchnie.webp"
+    file: "public/images/categories/kuchnie-projekt.webp"
   },
   {
     input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_51.png",
-    file: "public/images/categories/salony.webp"
+    file: "public/images/categories/salony-projekt.webp"
   },
   {
     input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_47.png",
-    file: "public/images/categories/lazienki.webp"
+    file: "public/images/categories/lazienki-projekt.webp"
   },
   {
     input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_43.png",
-    file: "public/images/categories/biura.webp"
+    file: "public/images/categories/biura-projekt.webp"
   },
   {
     input: "C:/Users/poczt/Downloads/ChatGPT Image 5 sie 2026, 12_40_33.png",
-    file: "public/images/categories/inne.webp"
+    file: "public/images/categories/inne-projekt.webp"
   }
 ];
 
