@@ -2,8 +2,8 @@ export const site = {
   name: "YAMURA",
   owner: "Michał Szwankowski",
   url: "https://yamura.pl",
-  email: "kontakt@yamura.pl",
-  location: "Chorzów / realizacje w całej Polsce",
+  email: "biuro@yamura.pl",
+  location: "Chorzów / Śląskie",
   registeredAddress: {
     street: "Gabriela Narutowicza 15",
     postalCode: "41-503",

@@ -62,7 +62,7 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 
 ## Kontakt i prywatnosc
 
-Kontakt ze strony prowadzi bezposrednio do skrzynki `kontakt@yamura.pl`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
+Kontakt ze strony prowadzi bezposrednio do skrzynki `biuro@yamura.pl`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
 
 Identyfikatory Google Analytics 4 i Meta Pixel nie sa wpisane w kod. Przed aktywowaniem tych narzedzi trzeba podlaczyc ich skrypty do zdarzenia `yamura:consent`, tak aby byly uruchamiane tylko dla odpowiedniej zgody.
 
