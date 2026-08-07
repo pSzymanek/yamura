@@ -52,7 +52,7 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 
 ## Edycja tresci
 
-- Dane firmy, SEO, telefon, e-mail i social media: `src/data/site.ts`
+- Dane firmy, SEO i e-mail: `src/data/site.ts`
 - Nawigacja: `src/data/navigation.ts`
 - Kategorie: `src/data/categories.ts`
 - Pasek korzysci: `src/data/benefits.ts`
@@ -60,19 +60,11 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 - Etapy procesu: `src/data/process.ts`
 - Kolory: zmienne CSS w `src/styles/global.css`
 
-## Formularz
+## Kontakt i prywatnosc
 
-Formularz ma gotowy interfejs, walidacje HTML, komunikaty i blokade wielokrotnego wyslania. Nie udaje realnej wysylki, bo backend nie zostal skonfigurowany.
+Kontakt ze strony prowadzi bezposrednio do skrzynki `kontakt@yamura.pl`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
 
-Miejsce podlaczenia wysylki znajduje sie w `src/scripts/contactForm.ts`. W tym miejscu mozna dodac:
-
-- wlasne API,
-- Resend,
-- Formspree,
-- Web3Forms,
-- inne narzedzie formularzowe.
-
-Po podlaczeniu backendu zastap komentarz w `contactForm.ts` prawdziwym zapytaniem `fetch`, obsluz odpowiedz sukcesu i bledu, a dane dostepowe trzymaj w zmiennych srodowiskowych po stronie backendu.
+Identyfikatory Google Analytics 4 i Meta Pixel nie sa wpisane w kod. Przed aktywowaniem tych narzedzi trzeba podlaczyc ich skrypty do zdarzenia `yamura:consent`, tak aby byly uruchamiane tylko dla odpowiedniej zgody.
 
 ## Wdrozenie
 
@@ -112,9 +104,6 @@ pnpm build
 
 Do podmiany przed finalna publikacja:
 
-- prawdziwy telefon,
-- prawdziwy e-mail,
-- linki social media,
 - prawdziwe zdjecia realizacji,
-- ostateczna polityka prywatnosci,
-- backend formularza.
+- identyfikatory GA4 i Meta Pixel, jezeli narzedzia maja zostac aktywowane,
+- prawna akceptacja dokumentow przed uruchomieniem kampanii i analityki.

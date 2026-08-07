@@ -1,0 +1,71 @@
+<aside class="cookie-consent" data-cookie-consent hidden aria-label="Ustawienia prywatności">
+  <div class="cookie-consent__summary" data-cookie-summary role="dialog" aria-labelledby="cookie-title">
+    <div>
+      <p class="cookie-consent__label">Twoja prywatność</p>
+      <h2 id="cookie-title">Ustawienia cookies</h2>
+      <p>
+        Używamy technologii niezbędnych do działania strony. Za Twoją zgodą możemy także używać analityki GA4
+        oraz narzędzi reklamowych Meta. Możesz zaakceptować wszystkie, odrzucić opcjonalne lub wybrać ustawienia.
+      </p>
+      <p class="cookie-consent__links">
+        <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+        <a href="/regulamin/">Regulamin</a>
+      </p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button class="btn btn--light" type="button" data-cookie-reject>Tylko niezbędne</button>
+      <button class="btn btn--light" type="button" data-cookie-customize>Wybierz ustawienia</button>
+      <button class="btn btn--champagne" type="button" data-cookie-accept>Akceptuję wszystkie</button>
+    </div>
+  </div>
+
+  <div class="cookie-consent__preferences" data-cookie-preferences role="dialog" aria-labelledby="cookie-settings-title" hidden>
+    <div class="cookie-consent__preferences-header">
+      <p class="cookie-consent__label">Centrum prywatności</p>
+      <h2 id="cookie-settings-title">Wybierz zakres zgody</h2>
+      <p>Ustawienia opcjonalne możesz zmienić w dowolnym momencie z poziomu stopki strony.</p>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>Niezbędne</h3>
+        <p>Zapamiętują wybór prywatności i zapewniają podstawowe działanie serwisu.</p>
+      </div>
+      <label>
+        <span>Zawsze aktywne</span>
+        <input type="checkbox" checked disabled aria-label="Cookies niezbędne są zawsze aktywne" />
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>Analityczne</h3>
+        <p>Pozwalają mierzyć korzystanie ze strony za pomocą Google Analytics 4.</p>
+      </div>
+      <label>
+        <span>GA4</span>
+        <input type="checkbox" data-cookie-analytics />
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>Marketingowe</h3>
+        <p>Pozwalają mierzyć kampanie i dopasowywać reklamy za pomocą narzędzi Meta.</p>
+      </div>
+      <label>
+        <span>Meta</span>
+        <input type="checkbox" data-cookie-marketing />
+      </label>
+    </div>
+
+    <div class="cookie-consent__actions cookie-consent__actions--preferences">
+      <button class="btn btn--light" type="button" data-cookie-back>Wróć</button>
+      <button class="btn btn--champagne" type="button" data-cookie-save>Zapisz wybór</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import "../../scripts/cookieConsent";
+</script>

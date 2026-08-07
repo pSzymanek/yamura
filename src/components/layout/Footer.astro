@@ -18,14 +18,19 @@ const year = new Date().getFullYear();
       ))}
     </nav>
     <address>
-      <a href={`tel:${site.phone.replaceAll(" ", "")}`}>{site.phone}</a>
       <a href={`mailto:${site.email}`}>{site.email}</a>
-      <span>{site.location}</span>
-      <span>{site.hours}</span>
+      <span>{site.owner}</span>
+      <span>{site.registeredAddress.street}</span>
+      <span>{site.registeredAddress.postalCode} {site.registeredAddress.city}</span>
+      <span>NIP: {site.nip} · REGON: {site.regon}</span>
     </address>
     <div class="site-footer__bottom">
       <p>© {year} YAMURA. Wszystkie prawa zastrzeżone.</p>
-      <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+      <nav class="site-footer__legal" aria-label="Dokumenty i prywatność">
+        <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+        <a href="/regulamin/">Regulamin</a>
+        <button type="button" data-cookie-settings>Ustawienia cookies</button>
+      </nav>
     </div>
   </div>
 </footer>

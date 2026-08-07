@@ -1,6 +1,8 @@
 ---
 import { site } from "../../data/site";
 import SectionHeading from "../ui/SectionHeading.astro";
+
+const emailHref = `mailto:${site.email}?subject=Zapytanie%20o%20realizacj%C4%99%20YAMURA`;
 ---
 
 <section class="contact section-light" id="kontakt">
@@ -8,10 +10,6 @@ import SectionHeading from "../ui/SectionHeading.astro";
     <div class="contact__details" data-reveal>
       <SectionHeading eyebrow="Kontakt" title="Porozmawiajmy o Twojej realizacji." align="left" />
       <dl>
-        <div>
-          <dt>Telefon</dt>
-          <dd><a href={`tel:${site.phone.replaceAll(" ", "")}`}>{site.phone}</a></dd>
-        </div>
         <div>
           <dt>E-mail</dt>
           <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
@@ -21,66 +19,20 @@ import SectionHeading from "../ui/SectionHeading.astro";
           <dd>{site.location}</dd>
         </div>
         <div>
-          <dt>Godziny kontaktu</dt>
-          <dd>{site.hours}</dd>
+          <dt>Siedziba</dt>
+          <dd>{site.registeredAddress.street}<br />{site.registeredAddress.postalCode} {site.registeredAddress.city}</dd>
         </div>
       </dl>
-      <div class="contact__social">
-        <a href={site.social.instagram}>Instagram</a>
-        <a href={site.social.facebook}>Facebook</a>
-      </div>
     </div>
-    <form class="contact-form" data-contact-form novalidate>
-      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-      <label>
-        <span>Imię i nazwisko</span>
-        <input name="name" type="text" autocomplete="name" required minlength="3" />
-      </label>
-      <label>
-        <span>E-mail</span>
-        <input name="email" type="email" autocomplete="email" required />
-      </label>
-      <label>
-        <span>Telefon</span>
-        <input name="phone" type="tel" autocomplete="tel" required />
-      </label>
-      <label>
-        <span>Rodzaj realizacji</span>
-        <select name="type" required>
-          <option value="">Wybierz</option>
-          <option>Kuchnia</option>
-          <option>Salon</option>
-          <option>Garderoba</option>
-          <option>Łazienka</option>
-          <option>Biuro</option>
-          <option>Lokal komercyjny</option>
-          <option>Inne</option>
-        </select>
-      </label>
-      <label>
-        <span>Lokalizacja realizacji</span>
-        <input name="location" type="text" autocomplete="address-level2" />
-      </label>
-      <label>
-        <span>Szacowany termin</span>
-        <input name="timeline" type="text" placeholder="np. jesień 2026" />
-      </label>
-      <label class="contact-form__wide">
-        <span>Wiadomość</span>
-        <textarea name="message" rows="5" required minlength="20"></textarea>
-      </label>
-      <label class="contact-form__consent">
-        <input name="consent" type="checkbox" required />
-        <span>Wyrażam zgodę na przetwarzanie danych w celu obsługi zapytania.</span>
-      </label>
-      <button class="btn btn--dark contact-form__submit" type="submit">Wyślij zapytanie</button>
-      <p class="contact-form__note">
-        Formularz jest przygotowany po stronie interfejsu. Miejsce podłączenia API znajduje się w pliku
-        <code>src/scripts/contactForm.ts</code>.
+    <div class="contact-card" data-reveal>
+      <p class="eyebrow">Bezpośredni kontakt</p>
+      <h2>Opowiedz nam o swojej przestrzeni.</h2>
+      <p>
+        Napisz, jakich mebli potrzebujesz, gdzie będzie realizowany projekt i jaki termin bierzesz pod uwagę.
+        Odpowiemy e-mailem i ustalimy kolejny krok.
       </p>
-    </form>
+      <a class="btn btn--dark" href={emailHref}>Napisz wiadomość</a>
+      <p class="contact-card__company">{site.owner} · NIP {site.nip} · REGON {site.regon}</p>
+    </div>
   </div>
-  <script>
-    import "../../scripts/contactForm";
-  </script>
 </section>
