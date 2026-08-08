@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Cormorant Garamond Light";
+  src: url("/fonts/cormorant-garamond-light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
 :root {
   --color-black: #0b0b0b;
   --color-black-soft: #111111;
@@ -146,6 +154,16 @@ button {
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.site-header__quote:hover,
+.site-header__quote:focus-visible,
+.mobile-menu nav .mobile-menu__quote:hover,
+.mobile-menu nav .mobile-menu__quote:focus-visible {
+  border-color: var(--color-vermilion);
+  background: var(--color-vermilion);
+  color: var(--color-white);
 }
 
 .site-header__menu,
@@ -1768,6 +1786,7 @@ button {
     border: 1px solid var(--color-border-dark);
     padding: 14px;
     text-align: center;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
   }
 
   html.is-menu-open {
