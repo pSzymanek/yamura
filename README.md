@@ -64,7 +64,7 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 
 Kontakt ze strony prowadzi bezposrednio do skrzynki `biuro@yamura.pl`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
 
-Google Analytics 4 korzysta z identyfikatora `G-Z71J6BK0EW` i jest ladowany dopiero po udzieleniu zgody analitycznej. Meta Pixel nie ma jeszcze identyfikatora; jego przyszla integracja powinna reagowac na zgode marketingowa przekazywana w zdarzeniu `yamura:consent`.
+Google Analytics 4 korzysta z identyfikatora `G-Z71J6BK0EW` i jest ladowany dopiero po udzieleniu zgody analitycznej. Meta Pixel korzysta z identyfikatora `1796015508487964` i jest ladowany dopiero po udzieleniu zgody marketingowej.
 
 ## Wdrozenie
 
@@ -105,5 +105,4 @@ pnpm build
 Do podmiany przed finalna publikacja:
 
 - prawdziwe zdjecia realizacji,
-- identyfikator Meta Pixel, jezeli narzedzie ma zostac aktywowane,
 - prawna akceptacja dokumentow przed uruchomieniem kampanii i analityki.

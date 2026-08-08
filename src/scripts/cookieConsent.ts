@@ -1,4 +1,5 @@
 import { applyGoogleAnalyticsConsent } from "./googleAnalytics";
+import { applyMetaPixelConsent } from "./metaPixel";
 
 type ConsentPreferences = {
   necessary: true;
@@ -66,6 +67,7 @@ function clearOptionalCookies(consent: ConsentPreferences) {
 
 function announce(consent: ConsentPreferences) {
   applyGoogleAnalyticsConsent(consent.analytics);
+  applyMetaPixelConsent(consent.marketing);
   window.dispatchEvent(new CustomEvent<ConsentPreferences>("yamura:consent", { detail: consent }));
 }
 
@@ -83,7 +85,7 @@ function saveConsent(next: Pick<ConsentPreferences, "analytics" | "marketing">) 
   announce(consent);
   if (root) root.hidden = true;
 
-  if (previous?.analytics && !consent.analytics) {
+  if ((previous?.analytics && !consent.analytics) || (previous?.marketing && !consent.marketing)) {
     window.location.reload();
   }
 }
