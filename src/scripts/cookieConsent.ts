@@ -71,6 +71,11 @@ function announce(consent: ConsentPreferences) {
   window.dispatchEvent(new CustomEvent<ConsentPreferences>("yamura:consent", { detail: consent }));
 }
 
+function announceMonitorState(open: boolean) {
+  if (root) root.dataset.cookieReady = "true";
+  window.dispatchEvent(new CustomEvent("yamura:cookie-monitor", { detail: { open } }));
+}
+
 function saveConsent(next: Pick<ConsentPreferences, "analytics" | "marketing">) {
   const previous = readConsent();
   const consent: ConsentPreferences = {
@@ -84,6 +89,7 @@ function saveConsent(next: Pick<ConsentPreferences, "analytics" | "marketing">) 
   clearOptionalCookies(consent);
   announce(consent);
   if (root) root.hidden = true;
+  announceMonitorState(false);
 
   if ((previous?.analytics && !consent.analytics) || (previous?.marketing && !consent.marketing)) {
     window.location.reload();
@@ -95,6 +101,7 @@ function showSummary() {
   root.hidden = false;
   summary.hidden = false;
   preferences.hidden = true;
+  announceMonitorState(true);
 }
 
 function showPreferences() {
@@ -105,6 +112,7 @@ function showPreferences() {
   root.hidden = false;
   summary.hidden = true;
   preferences.hidden = false;
+  announceMonitorState(true);
   analytics.focus();
 }
 
@@ -130,6 +138,8 @@ const savedConsent = readConsent();
 if (savedConsent) {
   clearOptionalCookies(savedConsent);
   announce(savedConsent);
+  if (root) root.hidden = true;
+  announceMonitorState(false);
 } else {
   showSummary();
 }
