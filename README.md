@@ -62,7 +62,7 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 
 ## Kontakt i prywatnosc
 
-Zapytania o realizacje sa kierowane na `meble@yamura.pl`, a oficjalny adres firmy uzywany w dokumentach to `biuro@yamura.pl`. Formularz korzysta z konfigurowalnego endpointu opisanego w `FORMULARZ-KONTAKTOWY.md`; bez endpointu otwiera gotowa wiadomosc w programie pocztowym. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
+Zapytania o realizacje sa kierowane na `meble@yamura.pl`, a oficjalny adres firmy uzywany w dokumentach to `biuro@yamura.pl`. Formularz korzysta z endpointu PHP w `public/api/`, wysyla wiadomosci przez SMTP Webd i automatycznie potwierdza klientowi przyjecie zapytania. Prywatna konfiguracja SMTP jest przechowywana poza publicznym katalogiem strony zgodnie z `FORMULARZ-KONTAKTOWY.md`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
 
 Google Analytics 4 korzysta z identyfikatora `G-Z71J6BK0EW` i jest ladowany dopiero po udzieleniu zgody analitycznej. Meta Pixel korzysta z identyfikatora `1796015508487964` i jest ladowany dopiero po udzieleniu zgody marketingowej.
 

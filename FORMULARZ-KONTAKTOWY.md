@@ -1,21 +1,44 @@
 # Formularz kontaktowy YAMURA
 
-Formularz wysyla zapytania dotyczace realizacji na endpoint HTTP. Adresem docelowym po stronie serwera powinien byc zawsze `meble@yamura.pl`.
+Formularz wysyla zapytania dotyczace realizacji przez gotowy endpoint PHP i SMTP Webd. Adresem docelowym po stronie serwera jest zawsze `meble@yamura.pl`.
 
 ## Podlaczenie endpointu
 
-1. Otworz plik `contact-config.js` w katalogu opublikowanej strony.
-2. Wpisz pelny adres endpointu:
+Frontend jest juz podlaczony do endpointu:
 
 ```js
-window.YAMURA_CONTACT_FORM_ENDPOINT = "https://yamura.pl/api/contact.php";
+window.YAMURA_CONTACT_FORM_ENDPOINT = "/api/contact.php";
 ```
 
-3. Zapisz plik i wyczysc cache przegladarki lub CDN.
+Endpoint, PHPMailer i grafiki wiadomosci znajduja sie w `public/api/` i sa automatycznie kopiowane do paczki produkcyjnej.
 
-Gdy adres endpointu jest pusty, formularz nie traci funkcjonalnosci: otwiera przygotowana wiadomosc do `meble@yamura.pl` w domyslnym programie pocztowym.
+## Prywatna konfiguracja SMTP
 
-## Kontrakt zadania
+Plik `yamura-contact-secrets.php` zawierajacy haslo skrzynki musi znajdowac sie w katalogu domowym konta hostingowego, poziom wyzej niz `public_html`. Nie moze znajdowac sie w katalogu publicznym strony.
+
+Przykladowa struktura hostingu:
+
+```text
+/home/nazwa-konta/yamura-contact-secrets.php
+/home/nazwa-konta/public_html/index.html
+/home/nazwa-konta/public_html/api/contact.php
+```
+
+Gotowy prywatny plik do wgrania jest dostarczany osobno obok paczki ZIP. Nie znajduje sie w repozytorium Git ani w publicznym archiwum strony.
+
+## Automatyczne potwierdzenie
+
+Po skutecznym wyslaniu zapytania na `meble@yamura.pl` klient otrzymuje automatyczna wiadomosc z:
+
+- podziekowaniem i informacja o dalszym kontakcie,
+- logo YAMURA,
+- podgladem rodzaju realizacji, lokalizacji, telefonu i tresci zapytania,
+- numerem telefonu i adresem e-mail YAMURA,
+- ikonami z linkami do Instagrama, Facebooka i Pinteresta.
+
+Nieudane wyslanie potwierdzenia nie powoduje ponownego wyslania glownego zapytania. Blad zostaje zapisany w logu serwera bez tresci wiadomosci klienta.
+
+## Kontrakt danych
 
 Frontend wysyla `POST` z naglowkiem `Content-Type: application/json` i nastepujacym body:
 
@@ -35,18 +58,17 @@ Frontend wysyla `POST` z naglowkiem `Content-Type: application/json` i nastepuja
 }
 ```
 
-Endpoint powinien zwracac dowolny kod `2xx` po przyjeciu wiadomosci. Bledy walidacji powinny zwracac `400` lub `422`, limit zapytan `429`, a blad wysylki `500` lub `503`. Body odpowiedzi moze byc puste albo zawierac JSON.
+Endpoint zwraca `200` po przyjeciu wiadomosci. Bledy walidacji zwracaja `400` lub `422`, limit zapytan `429`, a blad wysylki `503`.
 
-## Wymagania po stronie serwera
+## Zabezpieczenia endpointu
 
-- odbieraj tylko metode `POST` i JSON;
-- ustaw odbiorce na stale jako `meble@yamura.pl` - nie ufaj polu `recipient` przeslanemu przez przegladarke;
-- zweryfikuj wymagane pola, format e-maila i limity dlugosci;
-- odrzucaj wiadomosci z wypelnionym polem `website` - to pulapka antyspamowa;
-- dodaj limit liczby zapytan dla adresu IP i kontroluj naglowek `Origin`;
-- usuwaj znaki nowej linii z danych trafiajacych do naglowkow e-mail;
-- dane SMTP, hasla i klucze przechowuj wyłącznie po stronie serwera;
-- przy endpointzie w innej domenie zezwol przez CORS tylko na `https://yamura.pl` i `https://www.yamura.pl`;
-- loguj bledy techniczne bez zapisywania tresci wiadomosci i nadmiarowych danych osobowych.
+- endpoint odbiera tylko metode `POST` i JSON;
+- odbiorca jest ustawiony na stale jako `meble@yamura.pl`;
+- wymagane pola, format e-maila i limity dlugosci sa walidowane;
+- pole `website` jest pulapka antyspamowa;
+- limit wynosi 5 zapytan z jednego adresu IP na 15 minut;
+- akceptowane sa tylko domeny `https://yamura.pl` i `https://www.yamura.pl`;
+- dane SMTP i haslo sa ladowane z prywatnego pliku poza `public_html`;
+- bledy techniczne sa logowane bez tresci wiadomosci i nadmiarowych danych osobowych.
 
-Do wysylki produkcyjnej zalecane jest SMTP przypisane do domeny zamiast funkcji `mail()`. Po podlaczeniu wykonaj test prawidlowego wyslania, bledu walidacji, limitu zapytan i zachowania formularza na telefonie.
+Wysylka korzysta z PHPMailer 6.10.0, SMTP `wn29.webd.pl`, portu `465` i szyfrowania SSL/TLS. Po wdrozeniu wykonaj test zapytania, potwierdzenia dla klienta, bledu walidacji oraz limitu zapytan.

@@ -2,6 +2,7 @@ node_modules/
 .astro/
 dist/
 export/
+server/yamura-contact-secrets.php
 
 .env
 .env.*
