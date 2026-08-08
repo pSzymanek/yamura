@@ -18,22 +18,20 @@ export type Benefit = {
 
 export type ProjectCategory =
   | "Kuchnie"
-  | "Salony"
   | "Zabudowy"
-  | "Łazienki"
-  | "Biura"
-  | "Kolorowe";
+  | "Wnętrza"
+  | "Komercyjne";
 
 export type Project = {
-  id: string;
+  id: number;
   title: string;
   category: ProjectCategory;
   filters: ProjectCategory[];
-  location: string;
   image: string;
   alt: string;
-  description: string;
-  featured?: boolean;
+  width: number;
+  height: number;
+  featured: boolean;
 };
 
 export type ProcessStep = {
