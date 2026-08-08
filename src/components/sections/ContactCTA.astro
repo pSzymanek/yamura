@@ -1,5 +1,6 @@
 ---
 import Button from "../ui/Button.astro";
+import { site } from "../../data/site";
 ---
 
 <section class="contact-cta">
@@ -9,7 +10,7 @@ import Button from "../ui/Button.astro";
     <p>Opowiedz nam, czego potrzebujesz. Przygotujemy rozwiązanie dopasowane do Twojej przestrzeni.</p>
     <div>
       <Button href="/kontakt/" variant="champagne">Umów konsultację</Button>
-      <Button href="mailto:biuro@yamura.pl" variant="light">Napisz do nas</Button>
+      <Button href={`mailto:${site.ordersEmail}`} variant="light">Napisz do nas</Button>
     </div>
   </div>
 </section>

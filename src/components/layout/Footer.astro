@@ -1,6 +1,8 @@
 ---
 import { navigation } from "../../data/navigation";
 import { site } from "../../data/site";
+import MapCard from "../ui/MapCard.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -17,13 +19,16 @@ const year = new Date().getFullYear();
         <a href={item.href}>{item.label}</a>
       ))}
     </nav>
-    <address>
-      <a href={`mailto:${site.email}`}>{site.email}</a>
+    <address class="site-footer__contact">
+      <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      <a href={`mailto:${site.ordersEmail}`}>{site.ordersEmail}</a>
       <span>{site.owner}</span>
       <span>{site.registeredAddress.street}</span>
       <span>{site.registeredAddress.postalCode} {site.registeredAddress.city}</span>
       <span>NIP: {site.nip} · REGON: {site.regon}</span>
+      <SocialLinks />
     </address>
+    <MapCard compact />
     <div class="site-footer__bottom">
       <p>© {year} YAMURA. Wszystkie prawa zastrzeżone.</p>
       <nav class="site-footer__legal" aria-label="Dokumenty i prywatność">

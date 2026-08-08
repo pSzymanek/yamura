@@ -1,0 +1,27 @@
+---
+import { site } from "../../data/site";
+import ContactIcon from "./ContactIcon.astro";
+
+type Props = {
+  compact?: boolean;
+};
+
+const { compact = false } = Astro.props;
+---
+
+<div class:list={["map-card", compact && "map-card--compact"]}>
+  <iframe
+    src={site.map.embedUrl}
+    title={`Mapa dojazdu: ${site.map.address}`}
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    tabindex="-1"
+  ></iframe>
+  <a href={site.map.googleMapsUrl} target="_blank" rel="noreferrer" aria-label={`Otwórz ${site.map.address} w Google Maps`}>
+    <span class="map-card__pin"><ContactIcon name="map" /></span>
+    <span>
+      <strong>Siedziba YAMURA</strong>
+      <small>{site.map.address}</small>
+    </span>
+  </a>
+</div>

@@ -2,6 +2,7 @@
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import CookieConsent from "../components/layout/CookieConsent.astro";
+import ContactDock from "../components/layout/ContactDock.astro";
 import { site } from "../data/site";
 import "../styles/global.css";
 
@@ -23,9 +24,12 @@ const schema = {
   name: site.name,
   legalName: site.owner,
   url: site.url,
-  email: site.email,
+  email: site.ordersEmail,
+  telephone: site.phone,
   taxID: site.nip,
   areaServed: "Polska",
+  hasMap: site.map.googleMapsUrl,
+  sameAs: site.socialMedia.map((social) => social.url),
   address: {
     "@type": "PostalAddress",
     streetAddress: site.registeredAddress.street,
@@ -54,6 +58,7 @@ const schema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline src="/contact-config.js"></script>
   </head>
   <body>
     <Header />
@@ -61,6 +66,7 @@ const schema = {
       <slot />
     </main>
     <Footer />
+    <ContactDock />
     <CookieConsent />
     <script>
       import "../scripts/navigation";

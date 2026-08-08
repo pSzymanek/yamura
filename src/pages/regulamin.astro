@@ -13,7 +13,7 @@ import { site } from "../data/site";
         <p class="eyebrow">Zasady korzystania</p>
         <h1>Regulamin serwisu</h1>
         <p>Regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem <strong>yamura.pl</strong>.</p>
-        <p class="legal__updated">Obowiązuje od 7 sierpnia 2026 r.</p>
+        <p class="legal__updated">Obowiązuje od 8 sierpnia 2026 r.</p>
       </header>
 
       <div class="legal__content">
@@ -25,7 +25,7 @@ import { site } from "../data/site";
             {site.registeredAddress.postalCode} {site.registeredAddress.city}<br />
             NIP: {site.nip}<br />
             REGON: {site.regon}<br />
-            E-mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+            E-mail: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
           </address>
         </section>
 
@@ -71,7 +71,7 @@ import { site } from "../data/site";
         <section>
           <h2>5. Kontakt drogą elektroniczną</h2>
           <p>
-            Użytkownik może dobrowolnie skontaktować się z usługodawcą za pomocą adresu {site.email}. Usługa kontaktowa
+            Użytkownik może dobrowolnie skontaktować się z usługodawcą za pomocą adresu {site.officialEmail}. Usługa kontaktowa
             rozpoczyna się z chwilą wysłania wiadomości i kończy po udzieleniu odpowiedzi albo zakończeniu korespondencji.
             Użytkownik może zrezygnować z dalszej korespondencji w dowolnym momencie.
           </p>
@@ -107,7 +107,7 @@ import { site } from "../data/site";
         <section>
           <h2>8. Reklamacje dotyczące serwisu</h2>
           <p>
-            Uwagi dotyczące działania serwisu można przesłać na adres <a href={`mailto:${site.email}`}>{site.email}</a>.
+            Uwagi dotyczące działania serwisu można przesłać na adres <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
             Zgłoszenie powinno zawierać opis problemu i dane pozwalające udzielić odpowiedzi. Reklamacje są rozpatrywane
             bez zbędnej zwłoki, nie później niż w ciągu 14 dni od otrzymania kompletnego zgłoszenia.
           </p>

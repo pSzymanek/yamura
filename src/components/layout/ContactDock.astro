@@ -1,0 +1,28 @@
+---
+import { site } from "../../data/site";
+import ContactIcon from "../ui/ContactIcon.astro";
+---
+
+<aside class="contact-dock" data-contact-dock aria-label="Szybki kontakt">
+  <div class="contact-dock__links" data-contact-dock-links>
+    {site.socialMedia.map((social) => (
+      <a href={social.url} target="_blank" rel="noreferrer" aria-label={social.name} data-label={social.name}>
+        <ContactIcon name={social.icon} />
+      </a>
+    ))}
+    <a href={`mailto:${site.ordersEmail}`} aria-label={`Napisz na ${site.ordersEmail}`} data-label="E-mail">
+      <ContactIcon name="mail" />
+    </a>
+    <a href={`tel:${site.phoneHref}`} aria-label={`Zadzwoń: ${site.phone}`} data-label="Telefon">
+      <ContactIcon name="phone" />
+    </a>
+  </div>
+  <button type="button" aria-expanded="false" aria-label="Otwórz szybki kontakt" data-contact-dock-toggle>
+    <span data-contact-open><ContactIcon name="contact" /></span>
+    <span data-contact-close hidden><ContactIcon name="close" /></span>
+  </button>
+</aside>
+
+<script>
+  import "../../scripts/contactDock";
+</script>

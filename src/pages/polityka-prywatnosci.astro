@@ -5,7 +5,7 @@ import { site } from "../data/site";
 
 <BaseLayout
   title="Polityka prywatności - YAMURA"
-  description="Polityka prywatności serwisu YAMURA: dane administratora, zasady przetwarzania danych, cookies, Google Analytics 4 i narzędzia Meta."
+  description="Polityka prywatności serwisu YAMURA: dane administratora, formularz kontaktowy, Google Maps, cookies, Google Analytics 4 i narzędzia Meta."
 >
   <section class="legal section-light">
     <div class="section-inner legal__inner">
@@ -16,7 +16,7 @@ import { site } from "../data/site";
           Poniżej wyjaśniamy, jakie dane mogą być przetwarzane podczas korzystania z serwisu{" "}
           <strong>yamura.pl</strong>, w jakim celu oraz jakie prawa przysługują użytkownikom.
         </p>
-        <p class="legal__updated">Ostatnia aktualizacja: 7 sierpnia 2026 r.</p>
+        <p class="legal__updated">Ostatnia aktualizacja: 8 sierpnia 2026 r.</p>
       </header>
 
       <div class="legal__content">
@@ -29,7 +29,7 @@ import { site } from "../data/site";
             {site.registeredAddress.postalCode} {site.registeredAddress.city}<br />
             NIP: {site.nip}<br />
             REGON: {site.regon}<br />
-            E-mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+            E-mail: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
           </address>
         </section>
 
@@ -57,6 +57,10 @@ import { site } from "../data/site";
           <p>
             Podanie danych w korespondencji jest dobrowolne, ale może być konieczne do udzielenia odpowiedzi,
             przygotowania wyceny lub realizacji zamówienia.
+          </p>
+          <p>
+            Formularz kontaktowy może obejmować imię i nazwisko, adres e-mail, numer telefonu, lokalizację i opis
+            planowanej realizacji. Wiadomości dotyczące zamówień są kierowane na adres {site.ordersEmail}.
           </p>
         </section>
 
@@ -126,12 +130,26 @@ import { site } from "../data/site";
         </section>
 
         <section>
-          <h2>7. Odbiorcy danych i przekazywanie poza EOG</h2>
+          <h2>7. Google Maps</h2>
+          <p>
+            W stopce i na stronie kontaktowej osadzona jest mapa Google wskazująca siedzibę YAMURA. Wczytanie mapy
+            powoduje połączenie z usługami Google, które może obejmować przekazanie adresu IP, informacji o urządzeniu
+            i przeglądarce. Kliknięcie mapy otwiera wskazany adres bezpośrednio w Google Maps.
+          </p>
+          <p>
+            Mapa służy ułatwieniu odnalezienia siedziby i zaplanowania dojazdu. Więcej informacji zawiera
+            <a href="https://policies.google.com/privacy?hl=pl" rel="noreferrer" target="_blank">polityka prywatności Google</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Odbiorcy danych i przekazywanie poza EOG</h2>
           <p>
             Dane mogą być powierzane podmiotom obsługującym hosting, pocztę elektroniczną, infrastrukturę IT,
             księgowość lub wsparcie prawne - wyłącznie w zakresie potrzebnym do realizacji tych usług. W przypadku
             aktywowania narzędzi analitycznych lub reklamowych odbiorcami danych mogą być również Google Ireland
-            Limited i Meta Platforms Ireland Limited.
+            Limited i Meta Platforms Ireland Limited. Połączenie z mapą Google może także powodować przekazanie danych
+            technicznych do Google.
           </p>
           <p>
             Dostawcy globalni mogą przetwarzać dane poza Europejskim Obszarem Gospodarczym. W takim przypadku
@@ -141,7 +159,7 @@ import { site } from "../data/site";
         </section>
 
         <section>
-          <h2>8. Okres przechowywania</h2>
+          <h2>9. Okres przechowywania</h2>
           <ul>
             <li>korespondencja - do zakończenia sprawy, a następnie do upływu okresu przedawnienia roszczeń;</li>
             <li>dokumentacja podatkowa i księgowa - przez okres wymagany przepisami prawa;</li>
@@ -152,7 +170,7 @@ import { site } from "../data/site";
         </section>
 
         <section>
-          <h2>9. Prawa użytkownika</h2>
+          <h2>10. Prawa użytkownika</h2>
           <p>W zależności od podstawy przetwarzania użytkownik ma prawo do:</p>
           <ul>
             <li>dostępu do danych i otrzymania ich kopii;</li>
@@ -163,13 +181,13 @@ import { site } from "../data/site";
             <li>wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
           </ul>
           <p>
-            Żądania dotyczące danych można przesyłać na adres <a href={`mailto:${site.email}`}>{site.email}</a>.
+            Żądania dotyczące danych można przesyłać na adres <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
             Informacje o składaniu skarg są dostępne na <a href="https://uodo.gov.pl/" rel="noreferrer" target="_blank">stronie UODO</a>.
           </p>
         </section>
 
         <section>
-          <h2>10. Profilowanie i zautomatyzowane decyzje</h2>
+          <h2>11. Profilowanie i zautomatyzowane decyzje</h2>
           <p>
             Dane z narzędzi analitycznych i reklamowych mogą służyć do tworzenia grup odbiorców i dopasowania reklam,
             jeżeli użytkownik wyrazi na to zgodę. Administrator nie podejmuje wobec użytkowników decyzji wywołujących
@@ -178,7 +196,7 @@ import { site } from "../data/site";
         </section>
 
         <section>
-          <h2>11. Zmiany polityki</h2>
+          <h2>12. Zmiany polityki</h2>
           <p>
             Polityka może być aktualizowana, gdy zmienią się funkcje serwisu, dostawcy narzędzi lub przepisy.
             Aktualna wersja jest zawsze publikowana pod tym adresem wraz z datą ostatniej aktualizacji.
