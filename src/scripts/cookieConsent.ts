@@ -1,3 +1,5 @@
+import { applyGoogleAnalyticsConsent } from "./googleAnalytics";
+
 type ConsentPreferences = {
   necessary: true;
   analytics: boolean;
@@ -63,10 +65,12 @@ function clearOptionalCookies(consent: ConsentPreferences) {
 }
 
 function announce(consent: ConsentPreferences) {
+  applyGoogleAnalyticsConsent(consent.analytics);
   window.dispatchEvent(new CustomEvent<ConsentPreferences>("yamura:consent", { detail: consent }));
 }
 
 function saveConsent(next: Pick<ConsentPreferences, "analytics" | "marketing">) {
+  const previous = readConsent();
   const consent: ConsentPreferences = {
     necessary: true,
     analytics: next.analytics,
@@ -78,6 +82,10 @@ function saveConsent(next: Pick<ConsentPreferences, "analytics" | "marketing">) 
   clearOptionalCookies(consent);
   announce(consent);
   if (root) root.hidden = true;
+
+  if (previous?.analytics && !consent.analytics) {
+    window.location.reload();
+  }
 }
 
 function showSummary() {
