@@ -1,0 +1,194 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+
+const pillars = [
+  {
+    number: "01",
+    title: "Weryfikacja techniczna",
+    text: "Sprawdzamy dokumentację, materiały i detale wykonawcze, zanim projekt trafi do produkcji."
+  },
+  {
+    number: "02",
+    title: "Wycena i harmonogram",
+    text: "Porządkujemy zakres realizacji, przygotowujemy wycenę i ustalamy realny plan kolejnych etapów."
+  },
+  {
+    number: "03",
+    title: "Produkcja i montaż",
+    text: "Bierzemy odpowiedzialność za wykonanie, logistykę i montaż zgodny z zaakceptowaną dokumentacją."
+  },
+  {
+    number: "04",
+    title: "Opieka po realizacji",
+    text: "Po odbiorze pozostajemy dostępni w sprawach wymagających regulacji, serwisu lub uzupełnień."
+  }
+];
+
+const gains = [
+  "Zachowujesz autorstwo projektu i prowadzisz relację ze swoim klientem.",
+  "Masz jeden zespół odpowiedzialny za techniczne przygotowanie i wykonanie mebli.",
+  "Otrzymujesz czytelne informacje o zakresie, kosztach i postępie realizacji.",
+  "Możesz zgłaszać zarówno pojedyncze projekty, jak i stałą współpracę wykonawczą."
+];
+
+const faqs = [
+  {
+    question: "Czy YAMURA przejmuje kontakt z moim klientem?",
+    answer:
+      "Nie narzucamy jednego modelu komunikacji. Na początku ustalamy zasady kontaktu tak, aby pracownia zachowała prowadzenie relacji i pełną kontrolę nad projektem."
+  },
+  {
+    question: "Na jakim etapie najlepiej zgłosić projekt?",
+    answer:
+      "Najwięcej możemy wnieść jeszcze przed zamknięciem dokumentacji wykonawczej, ale wyceniamy również projekty gotowe do realizacji. Im wcześniej zobaczymy założenia, tym łatwiej ograniczyć późniejsze korekty."
+  },
+  {
+    question: "Czy realizujecie projekty przygotowane przez inną pracownię?",
+    answer:
+      "Tak. Pracujemy na dokumentacji projektantów i architektów, uzupełniając ją o ustalenia techniczne potrzebne do produkcji i montażu."
+  },
+  {
+    question: "Jak rozpocząć współpracę?",
+    answer:
+      "Przejdź do oferty YAMURA PRO w Dealshare i uzupełnij krótki brief. Na jego podstawie ustalimy, czy chodzi o wycenę konkretnego projektu, konsultację techniczną czy stałą obsługę wykonawczą."
+  }
+];
+---
+
+<BaseLayout
+  title="YAMURA PRO - współpraca dla architektów i projektantów"
+  description="YAMURA PRO to współpraca wykonawcza dla biur architektonicznych i projektantów wnętrz: weryfikacja techniczna, wycena, produkcja i montaż mebli na wymiar."
+>
+  <section class="pro-hero" aria-labelledby="pro-title">
+    <img
+      src="/images/realizacje/28-zabudowa-scienna-drewno-lustra-02.webp"
+      alt="Zabudowa meblowa wykonana według indywidualnego projektu wnętrza."
+      width="1672"
+      height="941"
+      fetchpriority="high"
+    />
+    <div class="section-inner pro-hero__inner">
+      <p class="eyebrow">Dla architektów i projektantów</p>
+      <h1 id="pro-title">YAMURA PRO</h1>
+      <p class="pro-hero__claim">Twoja koncepcja. Nasze wykonanie.</p>
+      <p class="pro-hero__lead">
+        Partnerstwo B2B, które pomaga przeprowadzić projekt od dokumentacji do gotowego montażu bez utraty kontroli nad wizją i relacją z klientem.
+      </p>
+      <div class="pro-hero__actions">
+        <a class="btn btn--champagne" href="#wspolpraca">Poznaj model współpracy</a>
+        <a class="btn btn--light" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer">Przejdź do oferty</a>
+      </div>
+      <a class="pro-hero__operator" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer" aria-label="Oferta YAMURA PRO obsługiwana przez Dealshare">
+        <span>Obsługiwane przez</span>
+        <img src="/images/partners/dealshare-light.png" alt="Dealshare" width="680" height="227" />
+      </a>
+    </div>
+  </section>
+
+  <section class="pro-intro section-light" id="wspolpraca">
+    <div class="section-inner pro-intro__inner" data-reveal>
+      <p class="eyebrow">Wspólna realizacja</p>
+      <h2>Projektujesz. My dowozimy wykonanie.</h2>
+      <p>
+        YAMURA PRO powstała dla pracowni, które potrzebują partnera potrafiącego czytać dokumentację, rozumieć intencję projektową i przełożyć ją na technologię wykonania. Wchodzimy tam, gdzie koncepcja spotyka produkcję, logistykę i montaż.
+      </p>
+    </div>
+  </section>
+
+  <section class="pro-pillars section-warm" aria-label="Zakres współpracy YAMURA PRO">
+    <div class="section-inner pro-pillars__grid">
+      {pillars.map((pillar) => (
+        <article class="pro-pillar" data-reveal>
+          <span>{pillar.number}</span>
+          <h3>{pillar.title}</h3>
+          <p>{pillar.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="pro-model section-light">
+    <div class="section-inner">
+      <header class="section-heading" data-reveal>
+        <p class="eyebrow">Jasny podział odpowiedzialności</p>
+        <h2>Jedna realizacja. Trzy dobrze określone role.</h2>
+        <span aria-hidden="true"></span>
+      </header>
+      <div class="pro-model__flow">
+        <article data-reveal>
+          <span>01</span>
+          <p class="pro-model__label">Pracownia</p>
+          <h3>Wizja i relacja</h3>
+          <p>Prowadzisz klienta, tworzysz koncepcję i podejmujesz decyzje estetyczne.</p>
+        </article>
+        <article data-reveal>
+          <span>02</span>
+          <p class="pro-model__label">YAMURA</p>
+          <h3>Technologia i wykonanie</h3>
+          <p>Weryfikujemy rozwiązania, wyceniamy, produkujemy, montujemy i odpowiadamy za jakość.</p>
+        </article>
+        <article data-reveal>
+          <span>03</span>
+          <p class="pro-model__label">Dealshare</p>
+          <h3>Obsługa współpracy</h3>
+          <p>Dealshare porządkuje brief, kwalifikuje projekt i prowadzi dalszy proces kontaktu dotyczący oferty B2B.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-gains section-warm">
+    <div class="section-inner pro-gains__inner">
+      <div class="pro-gains__image" data-reveal>
+        <img
+          src="/images/realizacje/25-zabudowa-scienna-podswietlana.webp"
+          alt="Podświetlana zabudowa ścienna wykonana na wymiar."
+          width="1672"
+          height="941"
+          loading="lazy"
+        />
+      </div>
+      <div class="pro-gains__copy" data-reveal>
+        <p class="eyebrow">Korzyści dla pracowni</p>
+        <h2>Partner wykonawczy, który wspiera Twój projekt.</h2>
+        <ul>
+          {gains.map((gain) => <li>{gain}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-handoff">
+    <div class="section-inner pro-handoff__inner">
+      <div class="pro-handoff__brand" data-reveal>
+        <p class="eyebrow">Obsługiwane przez</p>
+        <img src="/images/partners/dealshare-light.png" alt="Dealshare" width="680" height="227" loading="lazy" />
+      </div>
+      <div class="pro-handoff__copy" data-reveal>
+        <h2>Szczegółowa oferta YAMURA PRO jest dostępna w Dealshare.</h2>
+        <p>
+          Tam znajdziesz pełny zakres współpracy, przebieg procesu i brief, od którego możemy rozpocząć rozmowę o konkretnym projekcie albo stałej obsłudze Twojej pracowni.
+        </p>
+        <a class="btn btn--champagne" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer">Zobacz ofertę w Dealshare</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-faq section-light">
+    <div class="section-inner pro-faq__inner">
+      <header data-reveal>
+        <p class="eyebrow">Najczęstsze pytania</p>
+        <h2>Zanim zaczniemy.</h2>
+      </header>
+      <div class="pro-faq__list">
+        {faqs.map((item) => (
+          <details data-reveal>
+            <summary>{item.question}<span aria-hidden="true">+</span></summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

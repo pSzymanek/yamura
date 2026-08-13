@@ -5,5 +5,6 @@ export const navigation: NavItem[] = [
   { label: "Oferta", href: "/#oferta" },
   { label: "Realizacje", href: "/realizacje/" },
   { label: "Proces", href: "/#proces" },
+  { label: "Yamura PRO", href: "/yamura-pro/" },
   { label: "Kontakt", href: "/kontakt/" }
 ];

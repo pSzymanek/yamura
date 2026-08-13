@@ -27,6 +27,9 @@ export const site = {
     { name: "Instagram", icon: "instagram", url: "https://www.instagram.com/yamuradesign/" },
     { name: "Facebook", icon: "facebook", url: "https://www.facebook.com/profile.php?id=61592926465245" }
   ],
+  pro: {
+    dealshareOfferUrl: "https://dealshare.pl/oferty/yamura-pro"
+  },
   footerText:
     "Polska firma projektująca i produkująca meble na wymiar do domów, mieszkań, biur i lokali komercyjnych.",
   seo: {

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -17,7 +15,7 @@ const RECIPIENT = 'meble@yamura.pl';
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW = 900;
 
-function respond(int $status, string $message): void
+function respond($status, $message)
 {
     http_response_code($status);
     header('Content-Type: application/json; charset=UTF-8');
@@ -26,19 +24,19 @@ function respond(int $status, string $message): void
     exit;
 }
 
-function text_value(array $payload, string $key): string
+function text_value(array $payload, $key)
 {
-    $value = $payload[$key] ?? '';
+    $value = isset($payload[$key]) ? $payload[$key] : '';
     return is_string($value) ? trim($value) : '';
 }
 
-function length_between(string $value, int $minimum, int $maximum): bool
+function length_between($value, $minimum, $maximum)
 {
     $length = function_exists('mb_strlen') ? mb_strlen($value, 'UTF-8') : strlen($value);
     return $length >= $minimum && $length <= $maximum;
 }
 
-function load_private_config(): array
+function load_private_config()
 {
     $candidates = [];
     $home = getenv('HOME');
@@ -52,7 +50,9 @@ function load_private_config(): array
     }
 
     if (!empty($_SERVER['DOCUMENT_ROOT']) && is_string($_SERVER['DOCUMENT_ROOT'])) {
-        $candidates[] = dirname(rtrim($_SERVER['DOCUMENT_ROOT'], '/\\')) . '/yamura-contact-secrets.php';
+        $documentRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/\\');
+        $candidates[] = dirname($documentRoot) . '/yamura-contact-secrets.php';
+        $candidates[] = dirname(dirname($documentRoot)) . '/yamura-contact-secrets.php';
     }
 
     foreach (array_unique($candidates) as $candidate) {
@@ -67,7 +67,7 @@ function load_private_config(): array
     respond(503, 'Formularz jest chwilowo niedostępny. Skontaktuj się z nami bezpośrednio.');
 }
 
-function create_mailer(array $config): PHPMailer
+function create_mailer(array $config)
 {
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -85,7 +85,7 @@ function create_mailer(array $config): PHPMailer
     return $mail;
 }
 
-function enforce_rate_limit(string $ip): void
+function enforce_rate_limit($ip)
 {
     $path = sys_get_temp_dir() . '/yamura-contact-' . hash('sha256', $ip) . '.json';
     $handle = @fopen($path, 'c+');
@@ -98,7 +98,7 @@ function enforce_rate_limit(string $ip): void
     $timestamps = json_decode($contents ?: '[]', true);
     $timestamps = is_array($timestamps) ? $timestamps : [];
     $threshold = time() - RATE_LIMIT_WINDOW;
-    $timestamps = array_values(array_filter($timestamps, static function ($timestamp) use ($threshold): bool {
+    $timestamps = array_values(array_filter($timestamps, static function ($timestamp) use ($threshold) {
         return is_int($timestamp) && $timestamp >= $threshold;
     }));
 
@@ -117,7 +117,24 @@ function enforce_rate_limit(string $ip): void
     fclose($handle);
 }
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+function error_id()
+{
+    if (function_exists('random_bytes')) {
+        return bin2hex(random_bytes(6));
+    }
+
+    if (function_exists('openssl_random_pseudo_bytes')) {
+        $strong = false;
+        $bytes = openssl_random_pseudo_bytes(6, $strong);
+        if ($bytes !== false && $strong) {
+            return bin2hex($bytes);
+        }
+    }
+
+    return substr(hash('sha256', uniqid('', true) . mt_rand()), 0, 12);
+}
+
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 if ($origin !== '' && !in_array($origin, ALLOWED_ORIGINS, true)) {
     respond(403, 'Niedozwolone źródło żądania.');
 }
@@ -127,7 +144,9 @@ if ($origin !== '') {
     header('Vary: Origin');
 }
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
+$requestMethod = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
+
+if ($requestMethod === 'OPTIONS') {
     header('Access-Control-Allow-Methods: POST, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, Accept');
     header('Access-Control-Max-Age: 600');
@@ -135,12 +154,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
     exit;
 }
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+if ($requestMethod !== 'POST') {
     header('Allow: POST, OPTIONS');
     respond(405, 'Dozwolona jest wyłącznie metoda POST.');
 }
 
-$contentType = strtolower($_SERVER['CONTENT_TYPE'] ?? '');
+$contentType = strtolower(isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '');
 if (strpos($contentType, 'application/json') !== 0) {
     respond(415, 'Nieobsługiwany format danych.');
 }
@@ -159,7 +178,7 @@ if (text_value($payload, 'website') !== '') {
     respond(200, 'Wiadomość została przyjęta.');
 }
 
-$startedAt = $payload['startedAt'] ?? 0;
+$startedAt = isset($payload['startedAt']) ? $payload['startedAt'] : 0;
 $elapsed = is_numeric($startedAt) ? ((int) round(microtime(true) * 1000) - (int) $startedAt) : 0;
 if ($elapsed < 2500 || $elapsed > 86400000) {
     respond(422, 'Odśwież stronę i spróbuj ponownie.');
@@ -171,7 +190,7 @@ $phone = text_value($payload, 'phone');
 $projectType = text_value($payload, 'projectType');
 $location = text_value($payload, 'location');
 $message = text_value($payload, 'message');
-$privacyAccepted = $payload['privacyAccepted'] ?? '';
+$privacyAccepted = isset($payload['privacyAccepted']) ? $payload['privacyAccepted'] : '';
 $allowedProjectTypes = ['Kuchnia', 'Salon', 'Łazienka', 'Biuro', 'Inna zabudowa'];
 
 if (!length_between($name, 2, 120)) {
@@ -196,7 +215,7 @@ if ($privacyAccepted !== 'true' && $privacyAccepted !== true) {
     respond(422, 'Zaakceptuj politykę prywatności.');
 }
 
-enforce_rate_limit($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+enforce_rate_limit(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown');
 $config = load_private_config();
 
 $requiredConfig = ['smtp_host', 'smtp_port', 'smtp_username', 'smtp_password'];
@@ -220,7 +239,7 @@ $plainBody = implode("\n", [
     $message,
 ]);
 
-$escape = static function (string $value): string {
+$escape = static function ($value) {
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 };
 $htmlBody = '<h2>Nowe zapytanie z formularza yamura.pl</h2>'
@@ -285,7 +304,7 @@ try {
     $mail->AltBody = $plainBody;
     $mail->send();
 } catch (Exception $exception) {
-    $errorId = bin2hex(random_bytes(6));
+    $errorId = error_id();
     error_log('YAMURA contact form SMTP error [' . $errorId . ']: ' . $exception->getMessage());
     respond(503, 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.');
 }
@@ -306,7 +325,7 @@ try {
     $confirmation->AltBody = $confirmationPlainBody;
     $confirmation->send();
 } catch (Exception $exception) {
-    $errorId = bin2hex(random_bytes(6));
+    $errorId = error_id();
     error_log('YAMURA confirmation email error [' . $errorId . ']: ' . $exception->getMessage());
 }
 
