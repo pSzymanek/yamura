@@ -1,32 +1,35 @@
+---
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+---
+
 <section class="brand-manifest section-light" aria-labelledby="brand-manifest-title">
   <div class="section-inner brand-manifest__inner">
     <div class="brand-manifest__intro" data-reveal>
       <p class="brand-manifest__label">
         <span aria-hidden="true"></span>
-        YAMURA | Wyprodukowano w Polsce
+        {t.brandManifest.label}
       </p>
-      <h2 id="brand-manifest-title">Polskie rzemiosło.<br />Japońska kultura detalu.</h2>
+      <h2 id="brand-manifest-title" set:html={t.brandManifest.title} />
       <p>
-        YAMURA to polska firma i lokalnie realizowana produkcja. Z dalekowschodnich tradycji czerpiemy podejście do dyscypliny i precyzji, którą zapewniamy w każdym detalu naszych realizacji.
+        {t.brandManifest.description}
       </p>
     </div>
 
-    <ol class="brand-manifest__principles" aria-label="Fundamenty marki YAMURA">
-      <li data-reveal>
-        <span>01</span>
-        <h3>Polski kapitał</h3>
-        <p>Niezależna marka rozwijana i zarządzana w Polsce.</p>
-      </li>
-      <li data-reveal>
-        <span>02</span>
-        <h3>Polska produkcja</h3>
-        <p>Meble wykonywane lokalnie, blisko klientów i ich wnętrz.</p>
-      </li>
-      <li data-reveal>
-        <span>03</span>
-        <h3>Japońska precyzja</h3>
-        <p>Prostota formy, konsekwencja procesu i dbałość o detal.</p>
-      </li>
+    <ol class="brand-manifest__principles" aria-label={t.brandManifest.principlesAriaLabel}>
+      {t.brandManifest.principles.map((principle) => (
+        <li data-reveal>
+          <span>{principle.number}</span>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </li>
+      ))}
     </ol>
   </div>
 </section>

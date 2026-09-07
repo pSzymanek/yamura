@@ -1,14 +1,17 @@
 ---
-import type { Category } from "../../types";
+import type { CategoryItem } from "../../i18n/types";
+import { getLangFromUrl, getLocalizedPath, type Locale } from "../../i18n";
 
 type Props = {
-  category: Category;
+  category: CategoryItem;
+  lang?: Locale;
 };
 
-const { category } = Astro.props;
+const { category, lang = getLangFromUrl(Astro.url) } = Astro.props;
+const targetHref = `${getLocalizedPath("/realizacje/", lang)}#${category.slug}`;
 ---
 
-<a class="category-card" href={`/realizacje/#${category.slug}`} data-reveal>
+<a class="category-card" href={targetHref} data-reveal>
   <img src={category.image} alt={category.alt} width="560" height="380" loading="lazy" />
   <span>{category.title}</span>
   <svg aria-hidden="true" viewBox="0 0 24 24">

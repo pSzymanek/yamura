@@ -5,19 +5,28 @@ import CookieConsent from "../components/layout/CookieConsent.astro";
 import ContactDock from "../components/layout/ContactDock.astro";
 import InspirationPrompt from "../components/layout/InspirationPrompt.astro";
 import { site } from "../data/site";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../i18n";
 import "../styles/global.css";
 
 type Props = {
   title?: string;
   description?: string;
   canonical?: string;
+  lang?: Locale;
 };
 
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
 const {
-  title = site.seo.title,
-  description = site.seo.description,
-  canonical = site.url + Astro.url.pathname
+  title = t.seo.title,
+  description = t.seo.description,
+  canonical = site.url + Astro.url.pathname,
+  lang = currentLang
 } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical.endsWith("/") ? canonical : `${canonical}/`;
 
 const schema = {
   "@context": "https://schema.org",
@@ -28,7 +37,7 @@ const schema = {
   email: site.ordersEmail,
   telephone: site.phone,
   taxID: site.nip,
-  areaServed: "Polska",
+  areaServed: ["Polska", "Europa", "PL", "JP", "DE", "KR", "CN", "Global"],
   hasMap: site.map.googleMapsUrl,
   sameAs: site.socialMedia.map((social) => social.url),
   address: {
@@ -43,18 +52,25 @@ const schema = {
 ---
 
 <!doctype html>
-<html lang="pl">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="pl" href={site.url + getLocalizedPath(currentPath, "pl")} />
+    <link rel="alternate" hreflang="ja" href={site.url + getLocalizedPath(currentPath, "ja")} />
+    <link rel="alternate" hreflang="en" href={site.url + getLocalizedPath(currentPath, "en")} />
+    <link rel="alternate" hreflang="de" href={site.url + getLocalizedPath(currentPath, "de")} />
+    <link rel="alternate" hreflang="ko" href={site.url + getLocalizedPath(currentPath, "ko")} />
+    <link rel="alternate" hreflang="zh" href={site.url + getLocalizedPath(currentPath, "zh")} />
+    <link rel="alternate" hreflang="x-default" href={site.url + getLocalizedPath(currentPath, "pl")} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -62,14 +78,14 @@ const schema = {
     <script is:inline src="/contact-config.js"></script>
   </head>
   <body>
-    <Header />
+    <Header lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
-    <ContactDock />
-    <CookieConsent />
-    <InspirationPrompt />
+    <Footer lang={lang} />
+    <ContactDock lang={lang} />
+    <CookieConsent lang={lang} />
+    <InspirationPrompt lang={lang} />
     <script>
       import "../scripts/navigation";
       import "../scripts/reveal";

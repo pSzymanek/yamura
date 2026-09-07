@@ -2,7 +2,7 @@ type Gtag = (...args: unknown[]) => void;
 
 declare global {
   interface Window {
-    dataLayer: unknown[][];
+    dataLayer: unknown[];
     gtag: Gtag;
   }
 }
@@ -13,8 +13,8 @@ function ensureGtag(): Gtag {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
-    ((...args: unknown[]) => {
-      window.dataLayer.push(args);
+    (function queueGtagCommand(..._args: unknown[]) {
+      window.dataLayer.push(arguments);
     });
 
   return window.gtag;

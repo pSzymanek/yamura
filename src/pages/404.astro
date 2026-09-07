@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/sections/ContactCTA.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<BaseLayout
+  title="404 - Strona nie została odnaleziona | YAMURA"
+  description="Strona, której szukasz, nie istnieje lub została przeniesiona."
+  lang="pl"
+>
+  <section class="subpage-hero" style="min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="section-inner" style="max-width: 680px; margin: 0 auto; padding: 60px 20px;">
+      <p class="eyebrow" style="color: var(--color-champagne); font-weight: 700; letter-spacing: 0.16em;">Błąd 404</p>
+      <h1 style="font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 16px 0;">Strona nie została odnaleziona</h1>
+      <p style="color: var(--color-text-muted); font-size: 1.1rem; line-height: 1.6; margin-bottom: 32px;">
+        Strona, której szukasz, mogła zostać przeniesiona, usunięta lub adres został wpisany niepoprawnie.
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <Button href="/" variant="champagne">Strona główna</Button>
+        <Button href="/realizacje/" variant="light">Nasze realizacje</Button>
+        <Button href="/kontakt/" variant="light">Kontakt</Button>
+      </div>
+    </div>
+  </section>
+  <ContactCTA lang="pl" />
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.privacyPolicy} - YAMURA`}
+  description="Privacy policy of the YAMURA website: data administrator, contact form, Google Maps, cookies, Google Analytics 4, and Meta tools."
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">Privacy & Cookies</p>
+        <h1>{t.common.privacyPolicy}</h1>
+        <p>
+          Below we explain what data may be processed while using the <strong>yamura.pl</strong> website, for what purposes, and what rights users hold.
+        </p>
+        <p class="legal__updated">Last updated: August 8, 2026</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. Data Controller</h2>
+          <p>The controller of your personal data is:</p>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. Scope, Purposes, and Legal Bases of Processing</h2>
+          <p>Personal data may be processed for the following purposes:</p>
+          <ul>
+            <li>
+              Responding to inquiries, preparing custom quotes, or initiating business cooperation — based on actions taken at your request prior to entering into a contract or contract execution (Art. 6(1)(b) GDPR);
+            </li>
+            <li>
+              Maintaining correspondence, ensuring website security, and establishing, pursuing, or defending legal claims — based on the controller's legitimate interest (Art. 6(1)(f) GDPR);
+            </li>
+            <li>
+              Fulfilling tax and statutory accounting obligations — based on legal obligations (Art. 6(1)(c) GDPR);
+            </li>
+            <li>
+              Analyzing website usage and measuring advertising performance — strictly subject to your voluntary consent for analytics/marketing cookies (Art. 6(1)(a) GDPR).
+            </li>
+          </ul>
+          <p>
+            Providing personal data is voluntary but necessary to respond to inquiries, prepare estimates, or execute orders.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Technical Logs & Server Data</h2>
+          <p>
+            When accessing the website, the hosting server automatically records standard technical data such as IP address, date and timestamp, requested URI, browser type, operating system, and HTTP response code. This data is used solely for security maintenance, diagnostics, and smooth operation.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Cookies & Similar Technologies</h2>
+          <p>
+            Basic browsing of this static website requires no marketing or analytics cookies. Google Analytics 4 is initialized only upon obtaining explicit analytics consent, and Meta Pixel only upon marketing consent. Declining consent does not restrict website content access.
+          </p>
+          <p>
+            Consent can be withdrawn at any time with the same ease as given. You can manage or clear cookies in browser settings or by clicking "Cookie Settings" in the website footer.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Google Analytics 4 & Meta Pixel</h2>
+          <p>
+            Subject to analytics consent, we use Google Analytics 4 (Google Ireland Limited) to gather aggregated usage metrics. Under marketing consent, we use Meta Pixel (Meta Platforms Ireland Limited) to evaluate campaign efficiency.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. User Rights</h2>
+          <p>
+            Under GDPR, you have the right to access, rectify, delete, restrict processing, transfer data, object to processing based on legitimate interests, and withdraw consent at any time. Inquiries may be addressed to <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

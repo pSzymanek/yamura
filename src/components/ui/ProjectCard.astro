@@ -1,12 +1,15 @@
 ---
 import type { Project } from "../../types";
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
 
 type Props = {
   project: Project;
   index: number;
+  lang?: Locale;
 };
 
-const { project, index } = Astro.props;
+const { project, index, lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <article
@@ -17,7 +20,7 @@ const { project, index } = Astro.props;
   data-project-featured={String(project.featured)}
   data-reveal
 >
-  <button class="project-card__button" type="button" aria-label={`Otwórz realizację: ${project.title}`}>
+  <button class="project-card__button" type="button" aria-label={`${t.projects.openProjectAria}: ${project.title}`}>
     <img
       src={project.image}
       alt={project.alt}

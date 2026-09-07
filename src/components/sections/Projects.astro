@@ -1,46 +1,65 @@
 ---
-import { initialGalleryCount, projectFilters, projects } from "../../data/projects";
+import { getLocalizedProjects, initialGalleryCount, projectFilters } from "../../data/projects";
 import ProjectCard from "../ui/ProjectCard.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const localizedProjects = getLocalizedProjects(lang);
 ---
 
 <section class="projects section-light" id="realizacje">
   <div class="section-inner">
     <SectionHeading
-      eyebrow="Realizacje"
-      title="Różne wnętrza. Jeden standard wykonania."
-      text="Zobacz wybrane realizacje YAMURA: kuchnie, zabudowy, wnętrza i przestrzenie komercyjne wykonane na wymiar."
+      eyebrow={t.projects.eyebrow}
+      title={t.projects.title}
+      text={t.projects.description}
     />
-    <div class="project-filters" role="toolbar" aria-label="Filtry realizacji" data-project-filters>
-      {projectFilters.map((filter) => (
-        <button type="button" data-filter={filter} aria-pressed={filter === "Wszystkie" ? "true" : "false"}>
-          {filter}
-        </button>
-      ))}
+    <div class="project-filters" role="toolbar" aria-label={t.projects.filtersAriaLabel} data-project-filters>
+      {projectFilters.map((filter) => {
+        const displayLabel = t.projects.filters[filter] || filter;
+        return (
+          <button type="button" data-filter={filter} aria-pressed={filter === "Wszystkie" ? "true" : "false"}>
+            {displayLabel}
+          </button>
+        );
+      })}
     </div>
     <div class="projects__grid" data-project-grid>
-      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+      {localizedProjects.map((project, index) => <ProjectCard project={project} index={index} lang={lang} />)}
     </div>
     <div class="projects__actions">
-      <button class="btn btn--dark" type="button" data-project-toggle aria-expanded="false">
-        Pokaż więcej realizacji
+      <button
+        class="btn btn--dark"
+        type="button"
+        data-project-toggle
+        data-text-more={t.projects.showMore}
+        data-text-less={t.projects.showLess}
+        aria-expanded="false"
+      >
+        {t.projects.showMore}
       </button>
     </div>
   </div>
-  <dialog class="project-dialog" data-project-dialog aria-label="Podgląd realizacji">
-    <button class="project-dialog__close" type="button" data-dialog-close aria-label="Zamknij podgląd">×</button>
-    <button class="project-dialog__nav project-dialog__nav--prev" type="button" data-dialog-prev aria-label="Poprzednia realizacja">←</button>
+  <dialog class="project-dialog" data-project-dialog aria-label={t.projects.dialogAria}>
+    <button class="project-dialog__close" type="button" data-dialog-close aria-label={t.projects.dialogCloseAria}>×</button>
+    <button class="project-dialog__nav project-dialog__nav--prev" type="button" data-dialog-prev aria-label={t.projects.dialogPrevAria}>←</button>
     <figure>
-      <img data-dialog-image src={projects[0].image} alt="" width={projects[0].width} height={projects[0].height} />
+      <img data-dialog-image src={localizedProjects[0].image} alt="" width={localizedProjects[0].width} height={localizedProjects[0].height} />
       <figcaption>
         <small data-dialog-category></small>
         <h3 data-dialog-title></h3>
       </figcaption>
     </figure>
-    <button class="project-dialog__nav project-dialog__nav--next" type="button" data-dialog-next aria-label="Następna realizacja">→</button>
+    <button class="project-dialog__nav project-dialog__nav--next" type="button" data-dialog-next aria-label={t.projects.dialogNextAria}>→</button>
   </dialog>
-  <script is:inline define:vars={{ projects, initialGalleryCount }}>
-    window.YAMURA_PROJECTS = projects;
+  <script is:inline define:vars={{ localizedProjects, initialGalleryCount }}>
+    window.YAMURA_PROJECTS = localizedProjects;
     window.YAMURA_INITIAL_GALLERY_COUNT = initialGalleryCount;
   </script>
   <script>

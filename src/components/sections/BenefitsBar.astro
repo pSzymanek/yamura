@@ -1,11 +1,18 @@
 ---
-import { benefits } from "../../data/benefits";
 import Icon from "../ui/Icon.astro";
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<section class="benefits-bar" aria-label="Korzyści współpracy z YAMURA">
+<section class="benefits-bar" aria-label={t.benefits.ariaLabel}>
   <div class="benefits-bar__inner">
-    {benefits.map((benefit) => (
+    {t.benefits.items.map((benefit) => (
       <article class="benefit-item" data-reveal>
         <Icon name={benefit.icon} />
         <div>

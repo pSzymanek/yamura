@@ -3,79 +3,101 @@ import { site } from "../../data/site";
 import SectionHeading from "../ui/SectionHeading.astro";
 import MapCard from "../ui/MapCard.astro";
 import SocialLinks from "../ui/SocialLinks.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const privacyHref = getLocalizedPath("/polityka-prywatnosci/", lang);
 ---
 
 <section class="contact section-light" id="kontakt">
   <div class="section-inner">
     <div class="contact__grid">
       <div class="contact__details" data-reveal>
-        <SectionHeading eyebrow="Kontakt" title="Porozmawiajmy o Twojej realizacji." align="left" />
+        <SectionHeading eyebrow={t.contactPage.eyebrow} title={t.contactPage.detailsTitle} align="left" />
         <dl>
           <div>
-            <dt>Zamówienia</dt>
+            <dt>{t.common.ordersLabel}</dt>
             <dd><a href={`mailto:${site.ordersEmail}`}>{site.ordersEmail}</a></dd>
           </div>
           <div>
-            <dt>Telefon</dt>
+            <dt>{t.common.phoneLabel}</dt>
             <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
           </div>
           <div>
-            <dt>Lokalizacja</dt>
+            <dt>{t.common.locationLabel}</dt>
             <dd>{site.location}</dd>
           </div>
           <div>
-            <dt>Siedziba</dt>
+            <dt>{t.common.headquartersLabel}</dt>
             <dd>{site.registeredAddress.street}<br />{site.registeredAddress.postalCode} {site.registeredAddress.city}</dd>
           </div>
         </dl>
         <div class="contact__social">
-          <p class="eyebrow">Znajdź nas</p>
+          <p class="eyebrow">{t.common.findUsLabel}</p>
           <SocialLinks />
         </div>
       </div>
 
-      <form class="contact-form" data-contact-form data-recipient={site.ordersEmail} data-reveal>
-        <p class="eyebrow">Zapytanie o realizację</p>
-        <h2>Opowiedz nam o swojej przestrzeni.</h2>
-        <p class="contact-form__intro">Przekaż najważniejsze informacje. Odpowiemy i ustalimy kolejny krok.</p>
+      <form
+        class="contact-form"
+        data-contact-form
+        data-recipient={site.ordersEmail}
+        data-status-success={t.contactForm.status.success}
+        data-status-error={t.contactForm.status.error}
+        data-status-mailto={t.contactForm.status.mailtoNotice}
+        data-submitting-text={t.contactForm.labels.submitting}
+        data-submit-text={t.contactForm.labels.submit}
+        data-reveal
+      >
+        <p class="eyebrow">{t.contactForm.eyebrow}</p>
+        <h2>{t.contactForm.title}</h2>
+        <p class="contact-form__intro">{t.contactForm.intro}</p>
 
         <div class="contact-form__grid">
           <label>
-            <span>Imię i nazwisko</span>
+            <span>{t.contactForm.labels.name}</span>
             <input type="text" name="name" autocomplete="name" required maxlength="120" />
           </label>
           <label>
-            <span>E-mail</span>
+            <span>{t.contactForm.labels.email}</span>
             <input type="email" name="email" autocomplete="email" required maxlength="160" />
           </label>
           <label>
-            <span>Telefon</span>
+            <span>{t.contactForm.labels.phone}</span>
             <input type="tel" name="phone" autocomplete="tel" maxlength="40" />
           </label>
           <label>
-            <span>Rodzaj realizacji</span>
+            <span>{t.contactForm.labels.projectType}</span>
             <select name="projectType" required>
-              <option value="">Wybierz</option>
-              <option>Kuchnia</option>
-              <option>Salon</option>
-              <option>Łazienka</option>
-              <option>Biuro</option>
-              <option>Inna zabudowa</option>
+              <option value="">{t.contactForm.labels.projectTypeSelect}</option>
+              <option>{t.contactForm.labels.projectTypeOptions.kitchen}</option>
+              <option>{t.contactForm.labels.projectTypeOptions.livingRoom}</option>
+              <option>{t.contactForm.labels.projectTypeOptions.bathroom}</option>
+              <option>{t.contactForm.labels.projectTypeOptions.office}</option>
+              <option>{t.contactForm.labels.projectTypeOptions.other}</option>
             </select>
           </label>
           <label class="contact-form__wide">
-            <span>Miejsce realizacji</span>
+            <span>{t.contactForm.labels.location}</span>
             <input type="text" name="location" autocomplete="address-level2" required maxlength="140" />
           </label>
           <label class="contact-form__wide">
-            <span>Wiadomość</span>
+            <span>{t.contactForm.labels.message}</span>
             <textarea name="message" rows="6" required minlength="20" maxlength="3000"></textarea>
           </label>
         </div>
 
         <label class="contact-form__consent">
           <input type="checkbox" name="privacyAccepted" value="true" required />
-          <span>Akceptuję przetwarzanie danych w celu odpowiedzi na zapytanie zgodnie z <a href="/polityka-prywatnosci/">polityką prywatności</a>.</span>
+          <span>
+            {t.contactForm.labels.consent}{" "}
+            <a href={privacyHref}>{t.common.privacyPolicy}</a>.
+          </span>
         </label>
         <label class="contact-form__trap" aria-hidden="true">
           <span>Strona internetowa</span>
@@ -83,14 +105,14 @@ import SocialLinks from "../ui/SocialLinks.astro";
         </label>
 
         <div class="contact-form__actions">
-          <button class="btn btn--dark" type="submit" data-contact-submit>Wyślij zapytanie</button>
+          <button class="btn btn--dark" type="submit" data-contact-submit>{t.contactForm.labels.submit}</button>
           <p class="contact-form__status" data-contact-status role="status" aria-live="polite"></p>
         </div>
       </form>
     </div>
 
     <div class="contact__map" data-reveal>
-      <MapCard />
+      <MapCard lang={lang} />
     </div>
   </div>
 </section>

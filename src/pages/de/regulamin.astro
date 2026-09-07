@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "de";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.terms} - YAMURA`}
+  description="Allgemeine Nutzungsbedingungen für die Website YAMURA."
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">Nutzungsbedingungen</p>
+        <h1>{t.common.terms}</h1>
+        <p>Diese Bedingungen regeln die Nutzung der Website <strong>yamura.pl</strong>.</p>
+        <p class="legal__updated">Gültig ab: 8. August 2026</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. Dienstanbieter</h2>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Polen<br />
+            NIP (USt-IdNr.): {site.nip}<br />
+            REGON: {site.regon}<br />
+            E-Mail: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. Charakter der Website</h2>
+          <p>
+            Die Website präsentiert die Marke YAMURA, das Leistungsspektrum im Bereich individueller Möbelfertigung, Referenzprojekte sowie Kontaktdaten. Der Zugriff auf die öffentlichen Inhalte ist kostenfrei.
+          </p>
+          <p>
+            Die auf der Website bereitgestellten Informationen, Visualisierungen und Beschreibungen stellen kein verbindliches Angebot im rechtlichen Sinne dar. Das Absenden einer Nachricht begründet keinen Vertrag. Projektumfang, Preise, Termine und Konditionen werden stets individuell vereinbart.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Urheberrecht & geistiges Eigentum</h2>
+          <p>
+            Das Layout der Website, Texte, Bildmarken, Fotografien, Renderings und sonstigen Inhalte sind urheberrechtlich geschützt. Die Vervielfältigung, Bearbeitung oder gewerbliche Nutzung bedarf der vorherigen schriftlichen Zustimmung.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Elektronischer Kontakt</h2>
+          <p>
+            Nutzer können über die E-Mail-Adresse <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a> unverbindlich Kontakt aufnehmen. Anfragen werden sorgfältig und zeitnah beantwortet.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

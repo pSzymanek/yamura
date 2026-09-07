@@ -1,0 +1,288 @@
+---
+import Flag from "../ui/Flag.astro";
+import { getLangFromUrl, getLocalizedPath, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+  currentPath?: string;
+  isMobile?: boolean;
+};
+
+const {
+  lang = getLangFromUrl(Astro.url),
+  currentPath = Astro.url.pathname,
+  isMobile = false
+} = Astro.props;
+
+const languages: Array<{ code: Locale; label: string; name: string }> = [
+  { code: "pl", label: "PL", name: "Polski" },
+  { code: "ja", label: "JA", name: "日本語" },
+  { code: "en", label: "EN", name: "English" },
+  { code: "de", label: "DE", name: "Deutsch" },
+  { code: "ko", label: "KO", name: "한국어" },
+  { code: "zh", label: "ZH", name: "中文" }
+];
+
+const current = languages.find((l) => l.code === lang) ?? languages[0];
+---
+
+<div class:list={["lang-switcher", isMobile && "lang-switcher--mobile"]} data-lang-switcher>
+  <button
+    type="button"
+    class="lang-switcher__button"
+    data-lang-toggle
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label="Wybierz język / 言語を選択 / Select language / Sprache wählen / 언어 선택 / 选择语言"
+  >
+    <span class="lang-switcher__flag-wrap">
+      <Flag code={current.code} class="lang-switcher__flag" />
+    </span>
+    <span class="lang-switcher__code">{current.label}</span>
+    <svg
+      class="lang-switcher__chevron"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+
+  <div class="lang-switcher__dropdown" data-lang-dropdown hidden>
+    <ul class="lang-switcher__list" role="listbox">
+      {languages.map(({ code, label, name }) => {
+        const isSelected = code === lang;
+        const targetHref = getLocalizedPath(currentPath, code);
+
+        return (
+          <li role="none">
+            <a
+              href={targetHref}
+              role="option"
+              aria-selected={isSelected ? "true" : "false"}
+              class:list={["lang-switcher__option", isSelected && "is-selected"]}
+              data-lang-option={code}
+            >
+              <span class="lang-switcher__flag-wrap">
+                <Flag code={code} class="lang-switcher__flag" />
+              </span>
+              <span class="lang-switcher__name">{name}</span>
+              <span class="lang-switcher__badge">{label}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</div>
+
+<script>
+  function setupLanguageSwitchers() {
+    const switchers = document.querySelectorAll<HTMLElement>("[data-lang-switcher]");
+
+    switchers.forEach((switcher) => {
+      if (switcher.dataset.initialized === "true") return;
+      switcher.dataset.initialized = "true";
+
+      const toggle = switcher.querySelector<HTMLButtonElement>("[data-lang-toggle]");
+      const dropdown = switcher.querySelector<HTMLElement>("[data-lang-dropdown]");
+      const options = switcher.querySelectorAll<HTMLAnchorElement>("[data-lang-option]");
+
+      function open() {
+        if (!toggle || !dropdown) return;
+        toggle.setAttribute("aria-expanded", "true");
+        dropdown.hidden = false;
+      }
+
+      function close() {
+        if (!toggle || !dropdown) return;
+        toggle.setAttribute("aria-expanded", "false");
+        dropdown.hidden = true;
+      }
+
+      toggle?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        expanded ? close() : open();
+      });
+
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          const code = opt.dataset.langOption;
+          if (code) {
+            try {
+              localStorage.setItem("yamura_lang", code);
+              document.cookie = `yamura_lang=${code}; path=/; max-age=31536000; SameSite=Lax`;
+            } catch {}
+          }
+          close();
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!switcher.contains(e.target as Node)) {
+          close();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          close();
+        }
+      });
+    });
+  }
+
+  setupLanguageSwitchers();
+  document.addEventListener("astro:page-load", setupLanguageSwitchers);
+</script>
+
+<style>
+  .lang-switcher {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-sans);
+  }
+
+  .lang-switcher__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 6px 8px;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-light);
+    transition: color 200ms ease, opacity 200ms ease;
+    cursor: pointer;
+  }
+
+  .lang-switcher__button:hover,
+  .lang-switcher__button:focus-visible {
+    background: transparent;
+    color: var(--color-champagne);
+  }
+
+  .lang-switcher__flag-wrap {
+    display: flex;
+    width: 21px;
+    height: 15px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  }
+
+  .lang-switcher__flag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lang-switcher__code {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .lang-switcher__chevron {
+    width: 14px;
+    height: 14px;
+    color: var(--color-champagne);
+    transition: transform 200ms ease;
+  }
+
+  .lang-switcher__button[aria-expanded="true"] .lang-switcher__chevron {
+    transform: rotate(180deg);
+  }
+
+  .lang-switcher__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 100;
+    min-width: 160px;
+    padding: 6px;
+    background: rgba(18, 18, 18, 0.98);
+    border: 1px solid rgba(197, 167, 125, 0.3);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(16px);
+  }
+
+  .lang-switcher__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .lang-switcher__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    color: var(--color-text-light);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 160ms ease;
+    text-decoration: none;
+  }
+
+  .lang-switcher__option:hover,
+  .lang-switcher__option:focus-visible {
+    background: rgba(197, 167, 125, 0.16);
+    color: var(--color-champagne);
+  }
+
+  .lang-switcher__option.is-selected {
+    background: rgba(197, 167, 125, 0.22);
+    color: var(--color-champagne);
+    font-weight: 700;
+  }
+
+  .lang-switcher__name {
+    flex: 1;
+    text-align: left;
+  }
+
+  .lang-switcher__badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .lang-switcher__option:hover .lang-switcher__badge,
+  .lang-switcher__option.is-selected .lang-switcher__badge {
+    color: var(--color-champagne);
+  }
+
+  /* Mobile version adjustments */
+  .lang-switcher--mobile {
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  .lang-switcher--mobile .lang-switcher__button {
+    width: 100%;
+    justify-content: center;
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .lang-switcher--mobile .lang-switcher__dropdown {
+    position: static;
+    margin-top: 8px;
+    width: 100%;
+  }
+</style>

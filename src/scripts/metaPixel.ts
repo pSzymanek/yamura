@@ -1,7 +1,7 @@
 type Fbq = {
   (...args: unknown[]): void;
   callMethod?: (...args: unknown[]) => void;
-  queue: unknown[][];
+  queue: unknown[];
   loaded: boolean;
   version: string;
   push: Fbq;
@@ -19,11 +19,11 @@ const pixelId = "1796015508487964";
 function ensureFbq(): Fbq {
   if (window.fbq) return window.fbq;
 
-  const fbq = ((...args: unknown[]) => {
+  const fbq = (function queueMetaPixelCommand(...args: unknown[]) {
     if (fbq.callMethod) {
       fbq.callMethod(...args);
     } else {
-      fbq.queue.push(args);
+      fbq.queue.push(arguments);
     }
   }) as Fbq;
 

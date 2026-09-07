@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactForm from "../../components/sections/ContactForm.astro";
+import { useTranslations } from "../../i18n";
+
+const lang = "ko";
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={`${t.contactPage.eyebrow} - YAMURA`} lang={lang}>
+  <section class="subpage-hero">
+    <div class="section-inner">
+      <p class="eyebrow">{t.contactPage.eyebrow}</p>
+      <h1>{t.contactPage.title}</h1>
+      <p>{t.contactPage.description}</p>
+    </div>
+  </section>
+  <ContactForm lang={lang} />
+</BaseLayout>

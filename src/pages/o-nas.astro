@@ -1,73 +1,51 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/sections/ContactCTA.astro";
+import { useTranslations } from "../i18n";
+
+const lang = "pl";
+const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="O nas - YAMURA | Polska marka mebli na wymiar"
-  description="Poznaj historię YAMURA: kilkanaście lat doświadczenia w projektowaniu i produkcji mebli na wymiar, rzemiosło, współpraca z projektantami i dbałość o detal."
+  title={t.aboutPage.seoTitle}
+  description={t.aboutPage.seoDescription}
+  lang={lang}
 >
   <section class="story-hero" aria-labelledby="story-title">
     <img src="/images/realizacje/30-pracownia-pila-formatowa.webp" alt="Piła formatowa i płyta w trakcie przygotowania elementów meblowych w pracowni." width="1672" height="941" fetchpriority="high" />
     <div class="section-inner story-hero__inner">
-      <p class="eyebrow">O nas</p>
-      <h1 id="story-title">Historia YAMURA</h1>
-      <p>Rzemiosło, cierpliwość i kilkanaście lat doświadczenia.</p>
+      <p class="eyebrow">{t.aboutPage.heroEyebrow}</p>
+      <h1 id="story-title">{t.aboutPage.heroTitle}</h1>
+      <p>{t.aboutPage.heroSubtitle}</p>
     </div>
   </section>
 
   <article class="story section-light">
     <div class="section-inner story__inner">
       <header class="story__lead" data-reveal>
-        <p class="eyebrow">Początek</p>
-        <h2>Zaczęło się od czegoś małego.</h2>
+        <p class="eyebrow">{t.aboutPage.leadEyebrow}</p>
+        <h2>{t.aboutPage.leadTitle}</h2>
       </header>
 
       <div class="story__chapter">
-        <aside aria-hidden="true"><span>01</span><p>Pierwsze kroki</p></aside>
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter1.number}</span><p>{t.aboutPage.chapter1.label}</p></aside>
         <div class="story__copy" data-reveal>
-          <p>
-            Kilkanaście lat temu, gdy stawialiśmy pierwsze kroki w świecie mebli na wymiar, nie mieliśmy jeszcze marki wartej zapamiętania. Mieliśmy za to coś cenniejszego — ciekawość, która nie dawała nam spokoju, i upór, by robić wszystko dobrze, nawet gdy nikt jeszcze na to nie patrzył.
-          </p>
-          <p>
-            Pierwsze realizacje były skromne niczym początek nieopowiedzianej historii. Kilka desek, prosty zamysł i więcej pytań niż gotowych odpowiedzi. To właśnie dzięki nim, a nie podręcznikom, zdobywaliśmy prawdziwą wiedzę. Każdy błąd był lekcją zapisaną w drewnie, a każdy sukces otwierał drzwi, których wcześniej nie odważylibyśmy się przekroczyć.
-          </p>
-          <p>
-            Z czasem drobne zlecenia ustępowały miejsca realizacjom, które początkowo wydawały się niemal niemożliwe. Nietypowe wymiary, formy niemieszczące się w katalogach i materiały, przy których niejeden warsztat rozkładał ręce. My podchodziliśmy do nich bliżej — bo najpiękniejsze rzeczy rodzą się zwykle tam, gdzie kończą się utarte schematy.
-          </p>
+          {t.aboutPage.chapter1.paragraphs.map((p) => <p>{p}</p>)}
         </div>
       </div>
 
       <div class="story__chapter">
-        <aside aria-hidden="true"><span>02</span><p>Własny standard</p></aside>
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter2.number}</span><p>{t.aboutPage.chapter2.label}</p></aside>
         <div class="story__copy" data-reveal>
-          <p>
-            Nauczyliśmy się, że standardowe rozwiązania rzadko odpowiadają prawdziwym potrzebom człowieka. Dlatego każdy projekt zaczynamy tak, jakby był pierwszym — bez uprzedzeń, poszukując formy, która nie tylko wypełni przestrzeń, ale nada jej właściwy ton.
-          </p>
-          <p>
-            Przez lata doskonaliliśmy każdy etap pracy z taką samą cierpliwością, z jaką szlifuje się drewno — od rozmowy z klientem i wyboru materiałów po ostatnie poprawki przed oddaniem mebla w nowy dom. Wiemy, że rzemiosło nie kryje się w wielkich gestach, lecz w detalach, których nikt nie zauważa, dopóki ich nie zabraknie.
-          </p>
-          <p>
-            Najcenniejsze lekcje przynieśli nam jednak ludzie — klienci, którzy powierzali nam swoje potrzeby i marzenia, oraz partnerzy, z którymi podejmowaliśmy się projektów przerastających jedną parę rąk. Szczególnie wiele zawdzięczamy projektantom wnętrz. Dzięki współpracy z nimi nauczyliśmy się czytać rysunek techniczny jak opowieść, a nie tylko zbiór liczb, oraz szanować cudzą wizję tak samo jak własne rzemiosło.
-          </p>
-          <p>
-            Nauczyliśmy się słuchać uważniej niż mówić. Dobry mebel zaczyna się bowiem nie od pomysłu stolarza, lecz od właściwie zrozumianej potrzeby drugiego człowieka. Zaufanie buduje się wolniej niż najbardziej skomplikowane połączenie — i znacznie łatwiej je stracić.
-          </p>
+          {t.aboutPage.chapter2.paragraphs.map((p) => <p>{p}</p>)}
         </div>
       </div>
 
       <div class="story__chapter">
-        <aside aria-hidden="true"><span>03</span><p>Narodziny YAMURA</p></aside>
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter3.number}</span><p>{t.aboutPage.chapter3.label}</p></aside>
         <div class="story__copy" data-reveal>
-          <p>
-            Z lat prób, potknięć i cichych zwycięstw — tych przy warsztacie i tych przy stole rozmów — wyrosło coś, czym chcieliśmy podzielić się szerzej. Tak narodziła się Yamura.
-          </p>
-          <p>
-            Nie jesteśmy marką stworzoną przy stole negocjacyjnym. Wyrośliśmy z warsztatu pachnącego świeżo ciętym drewnem, z trocin osiadających na podłodze i z poprawek, o których nikt poza nami nie wiedział, a które znaczyły dla nas wszystko.
-          </p>
-          <p>
-            Yamura jest sumą tej drogi. I obietnicą, że każdy kolejny projekt potraktujemy z taką samą cierpliwością jak pierwszy.
-          </p>
+          {t.aboutPage.chapter3.paragraphs.map((p) => <p>{p}</p>)}
         </div>
       </div>
     </div>
@@ -75,11 +53,11 @@ import ContactCTA from "../components/sections/ContactCTA.astro";
 
   <section class="story-finale">
     <div class="section-inner" data-reveal>
-      <p>Cierpliwość ma swój kształt.</p>
-      <h2>Uczyliśmy się go nadawać przez kilkanaście lat, deska po desce.</h2>
-      <p>Dziś jesteśmy gotowi nadać go Twojej przestrzeni.</p>
+      <p>{t.aboutPage.finale.line1}</p>
+      <h2>{t.aboutPage.finale.line2}</h2>
+      <p>{t.aboutPage.finale.line3}</p>
     </div>
   </section>
 
-  <ContactCTA />
+  <ContactCTA lang={lang} />
 </BaseLayout>

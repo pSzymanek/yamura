@@ -1,6 +1,15 @@
 ---
 import { site } from "../../data/site";
 import ContactIcon from "../ui/ContactIcon.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const contactHref = getLocalizedPath("/kontakt/", lang);
 
 const pinterest = site.socialMedia.find((social) => social.name === "Pinterest")?.url ?? "https://pl.pinterest.com/yamurameble/";
 ---
@@ -13,24 +22,24 @@ const pinterest = site.socialMedia.find((social) => social.name === "Pinterest")
       <img src="/images/promo/japandi-desktop.webp" alt="" width="1680" height="945" />
     </picture>
 
-    <button class="inspiration-prompt__close" type="button" data-inspiration-close aria-label="Zamknij">
+    <button class="inspiration-prompt__close" type="button" data-inspiration-close aria-label={t.common.close}>
       <ContactIcon name="close" />
     </button>
 
     <div class="inspiration-prompt__content">
       <img class="inspiration-prompt__logo" src="/images/logo/yamura-dark.png" alt="YAMURA" width="288" height="68" />
-      <p class="inspiration-prompt__eyebrow">Wnętrza i inspiracje</p>
-      <h2 id="inspiration-prompt-title">Moda na japandi trwa</h2>
+      <p class="inspiration-prompt__eyebrow">{t.inspirationPrompt.eyebrow}</p>
+      <h2 id="inspiration-prompt-title">{t.inspirationPrompt.title}</h2>
       <div class="inspiration-prompt__copy">
-        <p>Szukasz inspiracji do swojego wnętrza? Zajrzyj na nasz Pinterest i odkryj pomysły na meble oraz aranżacje.</p>
-        <p>A jeśli chcesz, żebyśmy wykonali takie meble dla Ciebie, skontaktuj się z nami. Tworzymy meble według Twojej wizji.</p>
+        <p>{t.inspirationPrompt.p1}</p>
+        <p>{t.inspirationPrompt.p2}</p>
       </div>
       <div class="inspiration-prompt__actions">
         <a class="inspiration-prompt__button inspiration-prompt__button--primary" href={pinterest} target="_blank" rel="noreferrer">
-          <span>Inspiracje na Pinterest</span><span aria-hidden="true">→</span>
+          <span>{t.inspirationPrompt.pinterestButton}</span><span aria-hidden="true">→</span>
         </a>
-        <a class="inspiration-prompt__button inspiration-prompt__button--secondary" href="/kontakt/">
-          <span>Skontaktuj się z nami</span><span aria-hidden="true">→</span>
+        <a class="inspiration-prompt__button inspiration-prompt__button--secondary" href={contactHref}>
+          <span>{t.inspirationPrompt.contactButton}</span><span aria-hidden="true">→</span>
         </a>
       </div>
     </div>

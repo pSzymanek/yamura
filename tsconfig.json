@@ -10,5 +10,7 @@
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "env.d.ts"],
+  "exclude": ["dist", "export", "yamura-realizacje", "node_modules"]
 }

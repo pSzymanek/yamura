@@ -2,16 +2,24 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Projects from "../../components/sections/Projects.astro";
 import ContactCTA from "../../components/sections/ContactCTA.astro";
+import { useTranslations } from "../../i18n";
+
+const lang = "pl";
+const t = useTranslations(lang);
 ---
 
-<BaseLayout title="Realizacje YAMURA - meble na wymiar">
+<BaseLayout
+  title={t.projectsPage.seoTitle}
+  description={t.projectsPage.seoDescription}
+  lang={lang}
+>
   <section class="subpage-hero">
     <div class="section-inner">
-      <p class="eyebrow">Realizacje</p>
-      <h1>Wybrane projekty mebli na wymiar</h1>
-      <p>Przykładowe kierunki stylistyczne: drewno, jasne zabudowy, kolorowe fronty, łazienki, biura i garderoby.</p>
+      <p class="eyebrow">{t.projectsPage.heroEyebrow}</p>
+      <h1>{t.projectsPage.heroTitle}</h1>
+      <p>{t.projectsPage.heroSubtitle}</p>
     </div>
   </section>
-  <Projects />
-  <ContactCTA />
+  <Projects lang={lang} />
+  <ContactCTA lang={lang} />
 </BaseLayout>

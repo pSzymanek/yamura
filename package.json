@@ -8,6 +8,7 @@
     "astro": "astro",
     "check": "astro check",
     "build": "astro check && astro build",
+    "export": "node tools/export-webd.cjs",
     "preview": "astro preview",
     "prepare:assets": "tsx tools/prepare-assets.ts"
   },

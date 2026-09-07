@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.terms} - YAMURA`}
+  description="Terms and Conditions for using the YAMURA website."
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">Terms of Use</p>
+        <h1>{t.common.terms}</h1>
+        <p>These terms set out the principles of using the website available at <strong>yamura.pl</strong>.</p>
+        <p class="legal__updated">Effective as of August 8, 2026</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. Service Provider</h2>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. Nature of the Website</h2>
+          <p>
+            The website showcases the YAMURA brand, scope of bespoke custom furniture design and joinery services, sample portfolio projects, and contact channels. Access to public website content is free of charge.
+          </p>
+          <p>
+            Information, visualizations, and descriptions provided on this website do not constitute a binding commercial offer within the meaning of the Polish Civil Code. Sending a message or inquiry does not constitute a contractual agreement. Project specifications, pricing, timelines, and execution terms are agreed individually outside the website.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Intellectual Property</h2>
+          <p>
+            Website layout, texts, brand marks, photography, visual renders, and all proprietary assets are legally protected. They may be viewed solely for private, non-commercial use. Any reproduction, distribution, or commercial exploitation requires prior written authorization.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Contact & Inquiries</h2>
+          <p>
+            Users may contact the provider directly via <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>. Inquiries and correspondence are handled with utmost care.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

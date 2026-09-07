@@ -1,21 +1,30 @@
 ---
-import { navigation } from "../../data/navigation";
 import { site } from "../../data/site";
 import MapCard from "../ui/MapCard.astro";
 import SocialLinks from "../ui/SocialLinks.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
 
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
+
+const privacyHref = getLocalizedPath("/polityka-prywatnosci/", lang);
+const termsHref = getLocalizedPath("/regulamin/", lang);
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__brand">
       <img src="/images/logo/yamura-light.png" alt="YAMURA" width="260" height="64" loading="lazy" />
-      <p>{site.footerText}</p>
-      <p class="site-footer__provenance"><span aria-hidden="true"></span> Polska firma · Polska produkcja · Japońska precyzja</p>
+      <p>{t.seo.description}</p>
+      <p class="site-footer__provenance"><span aria-hidden="true"></span> {t.common.provenance}</p>
     </div>
-    <nav aria-label="Nawigacja w stopce">
-      {navigation.map((item) => (
+    <nav aria-label={t.common.footerNavAriaLabel}>
+      {t.navigation.map((item) => (
         <a href={item.href}>{item.label}</a>
       ))}
     </nav>
@@ -28,13 +37,13 @@ const year = new Date().getFullYear();
       <span>NIP: {site.nip} · REGON: {site.regon}</span>
       <SocialLinks />
     </address>
-    <MapCard compact />
+    <MapCard compact lang={lang} />
     <div class="site-footer__bottom">
-      <p>© {year} YAMURA. Wszystkie prawa zastrzeżone.</p>
-      <nav class="site-footer__legal" aria-label="Dokumenty i prywatność">
-        <a href="/polityka-prywatnosci/">Polityka prywatności</a>
-        <a href="/regulamin/">Regulamin</a>
-        <button type="button" data-cookie-settings>Ustawienia cookies</button>
+      <p>© {year} YAMURA. {t.common.allRightsReserved}</p>
+      <nav class="site-footer__legal" aria-label={t.common.legalNavAriaLabel}>
+        <a href={privacyHref}>{t.common.privacyPolicy}</a>
+        <a href={termsHref}>{t.common.terms}</a>
+        <button type="button" data-cookie-settings>{t.common.cookieSettings}</button>
       </nav>
     </div>
   </div>

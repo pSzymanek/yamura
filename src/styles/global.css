@@ -147,14 +147,21 @@ button {
   color: var(--color-vermilion);
 }
 
-.site-header__quote {
+.site-header__actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-header__quote {
   border: 1px solid rgba(197, 167, 125, 0.56);
   padding: 18px 28px;
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  white-space: nowrap;
 }
 
 .site-header__quote:hover,

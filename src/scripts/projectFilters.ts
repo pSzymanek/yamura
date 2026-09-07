@@ -18,7 +18,9 @@ function updateProjects() {
   if (toggle) {
     toggle.hidden = activeFilter !== "Wszystkie";
     toggle.setAttribute("aria-expanded", String(expanded));
-    toggle.textContent = expanded ? "Pokaż mniej" : "Pokaż więcej realizacji";
+    const moreText = toggle.dataset.textMore || "Pokaż więcej realizacji";
+    const lessText = toggle.dataset.textLess || "Pokaż mniej";
+    toggle.textContent = expanded ? lessText : moreText;
   }
 
   window.dispatchEvent(new CustomEvent("yamura:projects-changed"));

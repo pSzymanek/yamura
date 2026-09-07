@@ -39,9 +39,15 @@ form?.addEventListener("submit", async (event) => {
   const formData = new FormData(form);
   const data = Object.fromEntries(Array.from(formData.entries(), ([key, value]) => [key, String(value)]));
 
+  const successMsg = form.dataset.statusSuccess || "Dziękujemy. Wiadomość została wysłana.";
+  const errorMsg = form.dataset.statusError || "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.";
+  const mailtoNotice = form.dataset.statusMailto || "Otwieramy wiadomość w Twoim programie pocztowym.";
+  const submittingText = form.dataset.submittingText || "Wysyłanie...";
+  const submitText = form.dataset.submitText || "Wyślij zapytanie";
+
   if (data.website) {
     form.reset();
-    setStatus("Dziękujemy. Wiadomość została przyjęta.", "success");
+    setStatus(successMsg, "success");
     return;
   }
 
@@ -49,13 +55,13 @@ form?.addEventListener("submit", async (event) => {
   const endpoint = window.YAMURA_CONTACT_FORM_ENDPOINT?.trim();
 
   if (!endpoint) {
-    setStatus("Otwieramy wiadomość w Twoim programie pocztowym.");
+    setStatus(mailtoNotice);
     window.location.href = buildMailto(data, recipient);
     return;
   }
 
   submit.disabled = true;
-  submit.textContent = "Wysyłanie...";
+  submit.textContent = submittingText;
   setStatus("");
 
   const controller = new AbortController();
@@ -77,12 +83,12 @@ form?.addEventListener("submit", async (event) => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     form.reset();
-    setStatus("Dziękujemy. Wiadomość została wysłana.", "success");
+    setStatus(successMsg, "success");
   } catch {
-    setStatus("Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.", "error");
+    setStatus(errorMsg, "error");
   } finally {
     window.clearTimeout(timeout);
     submit.disabled = false;
-    submit.textContent = "Wyślij zapytanie";
+    submit.textContent = submitText;
   }
 });

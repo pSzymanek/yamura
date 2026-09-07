@@ -1,5 +1,14 @@
 ---
 import Button from "../ui/Button.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const aboutHref = getLocalizedPath("/o-nas/", lang);
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -8,18 +17,18 @@ import Button from "../ui/Button.astro";
   </div>
   <div class="hero__copy" data-reveal>
     <img class="hero__logo" src="/images/logo/yamura-dark.png" alt="YAMURA" width="520" height="126" />
-    <h1 id="hero-title">Tworzymy meble<br />dopasowane do Ciebie</h1>
+    <h1 id="hero-title" set:html={t.hero.title} />
     <span aria-hidden="true"></span>
     <p>
-      Projektujemy i produkujemy meble, które łączą estetykę, funkcjonalność i najwyższą jakość wykonania.
+      {t.hero.description}
     </p>
     <p class="hero__provenance">
       <span aria-hidden="true"></span>
-      Polska marka <i aria-hidden="true">·</i> Japońska precyzja
+      {t.hero.provenance}
     </p>
     <div class="hero__actions">
-      <Button href="/o-nas/">Poznaj nas</Button>
-      <a class="hero__arrow" href="#oferta" aria-label="Przejdź do oferty">
+      <Button href={aboutHref}>{t.hero.ctaButton}</Button>
+      <a class="hero__arrow" href="#oferta" aria-label={t.hero.arrowAriaLabel}>
         <svg viewBox="0 0 42 14" aria-hidden="true">
           <path d="M1 7h38m-6-6 7 6-7 6" />
         </svg>

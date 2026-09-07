@@ -1,46 +1,57 @@
-<aside class="cookie-consent" data-cookie-consent data-cookie-ready="false" hidden aria-label="Ustawienia prywatności">
+---
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+
+const privacyHref = getLocalizedPath("/polityka-prywatnosci/", lang);
+const termsHref = getLocalizedPath("/regulamin/", lang);
+---
+
+<aside class="cookie-consent" data-cookie-consent data-cookie-ready="false" hidden aria-label={t.cookieConsent.ariaLabel}>
   <div class="cookie-consent__summary" data-cookie-summary role="dialog" aria-labelledby="cookie-title">
     <div>
-      <p class="cookie-consent__label">Twoja prywatność</p>
-      <h2 id="cookie-title">Ustawienia cookies</h2>
-      <p>
-        Używamy technologii niezbędnych do działania strony. Za Twoją zgodą możemy także używać analityki GA4
-        oraz narzędzi reklamowych Meta. Możesz zaakceptować wszystkie, odrzucić opcjonalne lub wybrać ustawienia.
-      </p>
+      <p class="cookie-consent__label">{t.cookieConsent.label}</p>
+      <h2 id="cookie-title">{t.cookieConsent.title}</h2>
+      <p>{t.cookieConsent.description}</p>
       <p class="cookie-consent__links">
-        <a href="/polityka-prywatnosci/">Polityka prywatności</a>
-        <a href="/regulamin/">Regulamin</a>
+        <a href={privacyHref}>{t.common.privacyPolicy}</a>
+        <a href={termsHref}>{t.common.terms}</a>
       </p>
     </div>
     <div class="cookie-consent__actions">
-      <button class="btn btn--light" type="button" data-cookie-reject>Tylko niezbędne</button>
-      <button class="btn btn--light" type="button" data-cookie-customize>Wybierz ustawienia</button>
-      <button class="btn btn--champagne" type="button" data-cookie-accept>Akceptuję wszystkie</button>
+      <button class="btn btn--light" type="button" data-cookie-reject>{t.cookieConsent.necessaryOnly}</button>
+      <button class="btn btn--light" type="button" data-cookie-customize>{t.cookieConsent.customize}</button>
+      <button class="btn btn--champagne" type="button" data-cookie-accept>{t.cookieConsent.acceptAll}</button>
     </div>
   </div>
 
   <div class="cookie-consent__preferences" data-cookie-preferences role="dialog" aria-labelledby="cookie-settings-title" hidden>
     <div class="cookie-consent__preferences-header">
-      <p class="cookie-consent__label">Centrum prywatności</p>
-      <h2 id="cookie-settings-title">Wybierz zakres zgody</h2>
-      <p>Ustawienia opcjonalne możesz zmienić w dowolnym momencie z poziomu stopki strony.</p>
+      <p class="cookie-consent__label">{t.cookieConsent.centerLabel}</p>
+      <h2 id="cookie-settings-title">{t.cookieConsent.centerTitle}</h2>
+      <p>{t.cookieConsent.centerDescription}</p>
     </div>
 
     <div class="cookie-option">
       <div>
-        <h3>Niezbędne</h3>
-        <p>Zapamiętują wybór prywatności i zapewniają podstawowe działanie serwisu.</p>
+        <h3>{t.cookieConsent.necessaryTitle}</h3>
+        <p>{t.cookieConsent.necessaryDesc}</p>
       </div>
       <label>
-        <span>Zawsze aktywne</span>
-        <input type="checkbox" checked disabled aria-label="Cookies niezbędne są zawsze aktywne" />
+        <span>{t.cookieConsent.necessaryAlwaysActive}</span>
+        <input type="checkbox" checked disabled aria-label={t.cookieConsent.necessaryAria} />
       </label>
     </div>
 
     <div class="cookie-option">
       <div>
-        <h3>Analityczne</h3>
-        <p>Pozwalają mierzyć korzystanie ze strony za pomocą Google Analytics 4.</p>
+        <h3>{t.cookieConsent.analyticsTitle}</h3>
+        <p>{t.cookieConsent.analyticsDesc}</p>
       </div>
       <label>
         <span>GA4</span>
@@ -50,8 +61,8 @@
 
     <div class="cookie-option">
       <div>
-        <h3>Marketingowe</h3>
-        <p>Pozwalają mierzyć kampanie i dopasowywać reklamy za pomocą narzędzi Meta.</p>
+        <h3>{t.cookieConsent.marketingTitle}</h3>
+        <p>{t.cookieConsent.marketingDesc}</p>
       </div>
       <label>
         <span>Meta</span>
@@ -60,8 +71,8 @@
     </div>
 
     <div class="cookie-consent__actions cookie-consent__actions--preferences">
-      <button class="btn btn--light" type="button" data-cookie-back>Wróć</button>
-      <button class="btn btn--champagne" type="button" data-cookie-save>Zapisz wybór</button>
+      <button class="btn btn--light" type="button" data-cookie-back>{t.cookieConsent.back}</button>
+      <button class="btn btn--champagne" type="button" data-cookie-save>{t.cookieConsent.save}</button>
     </div>
   </div>
 </aside>
