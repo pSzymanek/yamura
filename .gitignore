@@ -15,3 +15,5 @@ server/yamura-contact-secrets.php
 .DS_Store
 Thumbs.db
 .codex-remote-attachments/
+*.zip
+
