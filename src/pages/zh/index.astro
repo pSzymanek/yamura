@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BrandManifest from "../../components/sections/BrandManifest.astro";
+import BenefitsBar from "../../components/sections/BenefitsBar.astro";
+import Categories from "../../components/sections/Categories.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import Hero from "../../components/sections/Hero.astro";
+import Process from "../../components/sections/Process.astro";
+import Projects from "../../components/sections/Projects.astro";
+import { useTranslations } from "../../i18n";
+
+const lang = "zh";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={t.seo.title}
+  description={t.seo.description}
+  lang={lang}
+>
+  <Hero lang={lang} />
+  <Categories lang={lang} />
+  <BenefitsBar lang={lang} />
+  <BrandManifest lang={lang} />
+  <Projects lang={lang} />
+  <Process lang={lang} />
+  <ContactCTA lang={lang} />
+</BaseLayout>

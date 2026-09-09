@@ -1,0 +1,480 @@
+{
+  "initialGalleryCount": 12,
+  "items": [
+    {
+      "id": 1,
+      "file": "images/01-stanowiska-burgundowe-warsztat.webp",
+      "title": "Stanowiska ekspozycyjne w kolorze burgundowym",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne",
+        "proces"
+      ],
+      "alt": "Modułowe stanowiska ekspozycyjne w bieli i burgundzie podczas przygotowania w pracowni.",
+      "width": 1448,
+      "height": 1086,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 2,
+      "file": "images/02-kuchnia-czern-jasne-drewno-01.webp",
+      "title": "Kuchnia w czerni i jasnym drewnie",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Nowoczesna kuchnia na wymiar w czerni i jasnym drewnie z zabudową pod sufit.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 3,
+      "file": "images/03-witryna-szklana-galeria-01.webp",
+      "title": "Witryna ekspozycyjna z oświetleniem",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Szklana witryna ekspozycyjna z podświetleniem LED i zabudową dolną.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 4,
+      "file": "images/04-stoisko-ciko-galeria.webp",
+      "title": "Stoisko handlowe w galerii",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Białe stoisko handlowe z burgundowymi detalami i szklanymi gablotami.",
+      "width": 1448,
+      "height": 1086,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 5,
+      "file": "images/05-zabudowa-komercyjna-warsztat.webp",
+      "title": "Zabudowa komercyjna przed montażem",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne",
+        "proces"
+      ],
+      "alt": "Długa zabudowa komercyjna z szufladami i jasnymi frontami przygotowana do montażu.",
+      "width": 941,
+      "height": 1672,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 6,
+      "file": "images/06-kuchnia-czern-jasne-drewno-02.webp",
+      "title": "Kuchnia z jasnym drewnem i czernią",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Kuchnia na wymiar z jasnymi drewnianymi frontami, czarnym blatem i czarną zabudową.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 7,
+      "file": "images/07-zabudowa-scienna-drewno-lustra.webp",
+      "title": "Zabudowa ścienna z lustrzanymi detalami",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Drewniana zabudowa ścienna z geometrycznym podziałem i lustrzanymi akcentami.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 8,
+      "file": "images/08-zabudowa-tv-poddasze.webp",
+      "title": "Zabudowa RTV na poddaszu",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Zabudowa RTV i przechowywania na poddaszu w szarościach i drewnie.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 9,
+      "file": "images/09-zabudowa-niebieskie-wneki.webp",
+      "title": "Zabudowa z niebieskimi wnękami",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Biała zabudowa na wymiar z granatowymi wnękami i dużym otwartym modułem.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 10,
+      "file": "images/10-zabudowa-turkus-biel-01.webp",
+      "title": "Zabudowa na poddaszu w turkusie i bieli",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Modułowa zabudowa meblowa na poddaszu w bieli z turkusową ścianą akcentową.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 11,
+      "file": "images/11-zabudowa-turkus-biel-02.webp",
+      "title": "Regał dzielący przestrzeń",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Ażurowy regał dzielący przestrzeń w bieli i turkusie.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 12,
+      "file": "images/12-zabudowa-turkus-biel-03.webp",
+      "title": "Zabudowa sypialni na poddaszu",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Zabudowa sypialni na poddaszu z białymi modułami i turkusowymi akcentami.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 13,
+      "file": "images/13-kuchnia-biel-drewno-czern.webp",
+      "title": "Kuchnia w bieli, drewnie i czerni",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Biała kuchnia na wymiar z czarnymi AGD i ciepłym drewnianym panelem nad blatem.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 14,
+      "file": "images/14-sypialnia-poddasze.webp",
+      "title": "Sypialnia na poddaszu",
+      "category": "Wnętrza",
+      "tags": [
+        "wnetrza",
+        "zabudowy"
+      ],
+      "alt": "Jasna sypialnia na poddaszu z łóżkiem w zabudowie i granatowymi wnękami.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 15,
+      "file": "images/15-zabudowa-lozka-niebieska.webp",
+      "title": "Łóżko w zabudowie z niebieskimi wnękami",
+      "category": "Wnętrza",
+      "tags": [
+        "wnetrza",
+        "zabudowy"
+      ],
+      "alt": "Białe łóżko w zabudowie na poddaszu z szarą ścianą i granatowymi wnękami.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 16,
+      "file": "images/16-detal-wneki-poddasze.webp",
+      "title": "Detal zabudowy na poddaszu",
+      "category": "Wnętrza",
+      "tags": [
+        "wnetrza",
+        "zabudowy"
+      ],
+      "alt": "Detal białej zabudowy z dużym otworem i widokiem na ceglaną ścianę.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 17,
+      "file": "images/17-stolik-drewniany.webp",
+      "title": "Drewniany stolik z półką",
+      "category": "Wnętrza",
+      "tags": [
+        "wnetrza"
+      ],
+      "alt": "Prosty drewniany stolik z otwartą półką i geometryczną formą.",
+      "width": 1448,
+      "height": 1086,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 18,
+      "file": "images/18-lokal-komercyjny-lada-01.webp",
+      "title": "Lada do lokalu usługowego",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Lada usługowa z drewnianymi frontami, szklanym przeszkleniem i jasnym blatem.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 19,
+      "file": "images/19-kuchnia-drewniany-panel-01.webp",
+      "title": "Kuchnia z drewnianym panelem",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Nowoczesna biała kuchnia z czarnym AGD i poziomym drewnianym panelem nad blatem.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 20,
+      "file": "images/20-kuchnia-drewniany-panel-02.webp",
+      "title": "Detal kuchni z drewnianym panelem",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Detal kuchni z czarnym zlewem, płytą i ciepłym drewnianym panelem.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 21,
+      "file": "images/21-kuchnia-jasne-drewno-czern.webp",
+      "title": "Kuchnia z jasnym drewnem i czernią",
+      "category": "Kuchnie",
+      "tags": [
+        "kuchnie"
+      ],
+      "alt": "Kuchnia na wymiar z jasnymi frontami drewnianymi i czarnymi blatami.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 22,
+      "file": "images/22-zabudowa-tv-poddasze-02.webp",
+      "title": "Ścianka RTV na poddaszu",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Ścianka RTV na poddaszu z zabudową i niską szafką w drewnie.",
+      "width": 941,
+      "height": 1672,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 23,
+      "file": "images/23-zabudowa-turkus-biel-04.webp",
+      "title": "Modułowa zabudowa sypialni",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Biało-turkusowa modułowa zabudowa sypialni na poddaszu.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 24,
+      "file": "images/24-szafa-lustrzana.webp",
+      "title": "Szafa z drzwiami lustrzanymi",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy"
+      ],
+      "alt": "Szafa na wymiar z białym frontem i dużym lustrem w drzwiach przesuwnych.",
+      "width": 1024,
+      "height": 1536,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 25,
+      "file": "images/25-zabudowa-scienna-podswietlana.webp",
+      "title": "Zabudowa ścienna z podświetleniem",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Nowoczesna zabudowa ścienna z czarno-białymi frontami i ciepłym podświetleniem LED.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 26,
+      "file": "images/26-witryna-szklana-galeria-02.webp",
+      "title": "Stoisko z podświetlanymi witrynami",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Rozbudowane stoisko handlowe z podświetlanymi szklanymi witrynami i zabudową szufladową.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 27,
+      "file": "images/27-lokal-komercyjny-lada-02.webp",
+      "title": "Zabudowa lokalu gastronomicznego",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Zabudowa lokalu gastronomicznego z drewnianymi frontami i szklaną witryną.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 28,
+      "file": "images/28-zabudowa-scienna-drewno-lustra-02.webp",
+      "title": "Drewniana zabudowa ścienna",
+      "category": "Zabudowy",
+      "tags": [
+        "zabudowy",
+        "wnetrza"
+      ],
+      "alt": "Drewniana zabudowa ścienna z czarnymi podziałami i kwadratowymi lustrzanymi detalami.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 29,
+      "file": "images/29-lokal-komercyjny-bar-puste-tablice.webp",
+      "title": "Minimalistyczna lada do lokalu",
+      "category": "Komercyjne",
+      "tags": [
+        "komercyjne"
+      ],
+      "alt": "Minimalistyczna lada w drewnie z jasnym blatem, szklaną osłoną i pustymi czarnymi tablicami.",
+      "width": 1672,
+      "height": 941,
+      "featured": true,
+      "placement": "realizacje",
+      "gallery": true
+    },
+    {
+      "id": 30,
+      "file": "images/30-pracownia-pila-formatowa.webp",
+      "title": "Pracownia — cięcie materiału",
+      "category": "Proces",
+      "tags": [
+        "proces"
+      ],
+      "alt": "Piła formatowa i płyta w trakcie przygotowania elementów meblowych w pracowni.",
+      "width": 1672,
+      "height": 941,
+      "featured": false,
+      "placement": "about",
+      "gallery": false
+    }
+  ],
+  "preserveHero": true,
+  "preserveFurnitureCategoryIllustrations": true,
+  "aboutImage": "images/30-pracownia-pila-formatowa.webp",
+  "galleryFilters": [
+    "Wszystkie",
+    "Kuchnie",
+    "Zabudowy",
+    "Wnętrza",
+    "Komercyjne"
+  ]
+}

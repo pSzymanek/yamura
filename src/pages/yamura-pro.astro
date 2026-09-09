@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { useTranslations } from "../i18n";
+
+const lang = "pl";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={t.proPage.seoTitle}
+  description={t.proPage.seoDescription}
+  lang={lang}
+>
+  <section class="pro-hero" aria-labelledby="pro-title">
+    <img
+      src="/images/realizacje/28-zabudowa-scienna-drewno-lustra-02.webp"
+      alt="Zabudowa meblowa wykonana według indywidualnego projektu wnętrza."
+      width="1672"
+      height="941"
+      fetchpriority="high"
+    />
+    <div class="section-inner pro-hero__inner">
+      <p class="eyebrow">{t.proPage.heroEyebrow}</p>
+      <h1 id="pro-title">{t.proPage.heroTitle}</h1>
+      <p class="pro-hero__claim">{t.proPage.heroClaim}</p>
+      <p class="pro-hero__lead">
+        {t.proPage.heroLead}
+      </p>
+      <div class="pro-hero__actions">
+        <a class="btn btn--champagne" href="#wspolpraca">{t.proPage.modelButton}</a>
+        <a class="btn btn--light" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer">{t.proPage.offerButton}</a>
+      </div>
+      <a class="pro-hero__operator" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer" aria-label={t.proPage.operatorAria}>
+        <span>{t.proPage.operatorLabel}</span>
+        <img src="/images/partners/dealshare-light.png" alt="Dealshare" width="680" height="227" />
+      </a>
+    </div>
+  </section>
+
+  <section class="pro-intro section-light" id="wspolpraca">
+    <div class="section-inner pro-intro__inner" data-reveal>
+      <p class="eyebrow">{t.proPage.introEyebrow}</p>
+      <h2>{t.proPage.introTitle}</h2>
+      <p>
+        {t.proPage.introLead}
+      </p>
+    </div>
+  </section>
+
+  <section class="pro-pillars section-warm" aria-label={t.proPage.pillarsAria}>
+    <div class="section-inner pro-pillars__grid">
+      {t.proPage.pillars.map((pillar) => (
+        <article class="pro-pillar" data-reveal>
+          <span>{pillar.number}</span>
+          <h3>{pillar.title}</h3>
+          <p>{pillar.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="pro-model section-light">
+    <div class="section-inner">
+      <header class="section-heading" data-reveal>
+        <p class="eyebrow">{t.proPage.modelEyebrow}</p>
+        <h2>{t.proPage.modelTitle}</h2>
+        <span aria-hidden="true"></span>
+      </header>
+      <div class="pro-model__flow">
+        {t.proPage.modelRoles.map((role) => (
+          <article data-reveal>
+            <span>{role.number}</span>
+            <p class="pro-model__label">{role.label}</p>
+            <h3>{role.title}</h3>
+            <p>{role.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-gains section-warm">
+    <div class="section-inner pro-gains__inner">
+      <div class="pro-gains__image" data-reveal>
+        <img
+          src="/images/realizacje/25-zabudowa-scienna-podswietlana.webp"
+          alt="Podświetlana zabudowa ścienna wykonana na wymiar."
+          width="1672"
+          height="941"
+          loading="lazy"
+        />
+      </div>
+      <div class="pro-gains__copy" data-reveal>
+        <p class="eyebrow">{t.proPage.gainsEyebrow}</p>
+        <h2>{t.proPage.gainsTitle}</h2>
+        <ul>
+          {t.proPage.gains.map((gain) => <li>{gain}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-handoff">
+    <div class="section-inner pro-handoff__inner">
+      <div class="pro-handoff__brand" data-reveal>
+        <p class="eyebrow">{t.proPage.handoffEyebrow}</p>
+        <img src="/images/partners/dealshare-light.png" alt="Dealshare" width="680" height="227" loading="lazy" />
+      </div>
+      <div class="pro-handoff__copy" data-reveal>
+        <h2>{t.proPage.handoffTitle}</h2>
+        <p>
+          {t.proPage.handoffText}
+        </p>
+        <a class="btn btn--champagne" href={site.pro.dealshareOfferUrl} target="_blank" rel="noopener noreferrer">{t.proPage.handoffButton}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-faq section-light">
+    <div class="section-inner pro-faq__inner">
+      <header data-reveal>
+        <p class="eyebrow">{t.proPage.faqEyebrow}</p>
+        <h2>{t.proPage.faqTitle}</h2>
+      </header>
+      <div class="pro-faq__list">
+        {t.proPage.faqs.map((item) => (
+          <details data-reveal>
+            <summary>{item.question}<span aria-hidden="true">+</span></summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

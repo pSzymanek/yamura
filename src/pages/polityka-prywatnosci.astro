@@ -1,18 +1,212 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
 ---
 
-<BaseLayout title="Polityka prywatności - YAMURA">
+<BaseLayout
+  title="Polityka prywatności - YAMURA"
+  description="Polityka prywatności serwisu YAMURA: dane administratora, formularz kontaktowy, Google Maps, cookies, Google Analytics 4 i narzędzia Meta."
+>
   <section class="legal section-light">
-    <div class="section-inner">
-      <p class="eyebrow">Dokument</p>
-      <h1>Polityka prywatności</h1>
-      <p>
-        To robocza treść polityki prywatności. Przed publikacją należy uzupełnić dane administratora,
-        podstawy prawne przetwarzania, okres przechowywania danych oraz informacje o narzędziach analitycznych.
-      </p>
-      <h2>Kontakt</h2>
-      <p>W sprawach dotyczących danych osobowych skontaktuj się przez adres kontakt@yamura.pl.</p>
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">Prywatność i cookies</p>
+        <h1>Polityka prywatności</h1>
+        <p>
+          Poniżej wyjaśniamy, jakie dane mogą być przetwarzane podczas korzystania z serwisu{" "}
+          <strong>yamura.pl</strong>, w jakim celu oraz jakie prawa przysługują użytkownikom.
+        </p>
+        <p class="legal__updated">Ostatnia aktualizacja: 8 sierpnia 2026 r.</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. Administrator danych</h2>
+          <p>Administratorem danych osobowych jest:</p>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            E-mail: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. Zakres, cele i podstawy przetwarzania</h2>
+          <p>Dane mogą być przetwarzane w następujących celach:</p>
+          <ul>
+            <li>
+              udzielenie odpowiedzi na wiadomość i przygotowanie wyceny lub współpracy - na podstawie działań
+              podejmowanych na żądanie przed zawarciem umowy albo wykonania umowy (art. 6 ust. 1 lit. b RODO);
+            </li>
+            <li>
+              prowadzenie korespondencji, zapewnienie bezpieczeństwa serwisu oraz ustalenie, dochodzenie lub obrona
+              roszczeń - na podstawie prawnie uzasadnionego interesu administratora (art. 6 ust. 1 lit. f RODO);
+            </li>
+            <li>
+              realizacja obowiązków podatkowych i rachunkowych - na podstawie obowiązku prawnego
+              (art. 6 ust. 1 lit. c RODO);
+            </li>
+            <li>
+              analityka korzystania z serwisu i pomiar skuteczności reklam - wyłącznie po wyrażeniu dobrowolnej
+              zgody na odpowiednie cookies lub podobne technologie (art. 6 ust. 1 lit. a RODO).
+            </li>
+          </ul>
+          <p>
+            Podanie danych w korespondencji jest dobrowolne, ale może być konieczne do udzielenia odpowiedzi,
+            przygotowania wyceny lub realizacji zamówienia.
+          </p>
+          <p>
+            Formularz kontaktowy może obejmować imię i nazwisko, adres e-mail, numer telefonu, lokalizację i opis
+            planowanej realizacji. Wiadomości dotyczące zamówień są kierowane na adres {site.ordersEmail}.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Dane techniczne i logi serwera</h2>
+          <p>
+            Podczas odwiedzania serwisu serwer hostingowy może automatycznie zapisywać dane techniczne, takie jak
+            adres IP, data i godzina zapytania, żądany adres, typ przeglądarki, system operacyjny oraz kod odpowiedzi
+            serwera. Dane te służą zapewnieniu bezpieczeństwa, diagnostyce błędów i prawidłowemu działaniu strony.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Cookies i podobne technologie</h2>
+          <p>
+            Podstawowe działanie statycznej strony nie wymaga cookies analitycznych ani reklamowych. Google Analytics 4
+            jest uruchamiany dopiero po uzyskaniu zgody analitycznej, a Meta Pixel dopiero po uzyskaniu zgody
+            marketingowej. Odmowa zgody nie ogranicza dostępu do treści serwisu.
+          </p>
+          <p>
+            Zgodę można wycofać z taką samą łatwością, z jaką została udzielona. Cookies można również usunąć lub
+            zablokować w ustawieniach przeglądarki. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania
+            dokonanego przed jej wycofaniem.
+          </p>
+          <p>
+            Wybór jest zapisywany lokalnie w przeglądarce przez maksymalnie 180 dni, aby serwis pamiętał decyzję.
+            Preferencje można ponownie otworzyć przyciskiem „Ustawienia cookies” w stopce strony.
+          </p>
+          <p>
+            Serwis zapisuje również lokalny licznik sesji, który ogranicza częstotliwość wyświetlania monitu z
+            inspiracjami i kontaktem. Licznik nie zawiera danych kontaktowych ani treści przeglądanych stron.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Google Analytics 4</h2>
+          <p>
+            Po uzyskaniu zgody analitycznej serwis korzysta z Google Analytics 4 (GA4), usługi dostarczanej przez Google
+            Ireland Limited. GA4 pomaga tworzyć statystyki dotyczące liczby użytkowników, sesji, odwiedzanych podstron,
+            przybliżonej lokalizacji oraz informacji o przeglądarce i urządzeniu.
+          </p>
+          <p>
+            GA4 może używać cookies <code>_ga</code> i <code>_ga_&lt;identyfikator&gt;</code> do odróżniania użytkowników
+            i utrzymywania stanu sesji. Google deklaruje, że w przypadku użytkowników z Europejskiego Obszaru
+            Gospodarczego adres IP jest wykorzystywany do ustalenia przybliżonej lokalizacji, a następnie odrzucany
+            przed zapisaniem danych w Analytics.
+          </p>
+          <p>
+            Więcej informacji: <a href="https://policies.google.com/privacy?hl=pl" rel="noreferrer" target="_blank">polityka prywatności Google</a>
+            oraz <a href="https://support.google.com/analytics/answer/11397207?hl=pl" rel="noreferrer" target="_blank">informacje o cookies GA4</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Meta Pixel</h2>
+          <p>
+            Po uzyskaniu zgody marketingowej serwis korzysta z Meta Pixel, narzędzia Meta Platforms Ireland Limited.
+            Rozwiązanie to pozwala mierzyć skuteczność reklam, tworzyć zbiorcze raporty i - jeżeli użytkownik wyrazi
+            odpowiednią zgodę - dopasowywać przekaz reklamowy w usługach Meta, takich jak Facebook i Instagram.
+          </p>
+          <p>
+            Meta Pixel może przekazywać informacje o odwiedzonych adresach, czasie zdarzeń, urządzeniu, przeglądarce,
+            adresie IP i identyfikatorach zapisanych w cookies. Meta może łączyć te informacje z kontem użytkownika
+            zgodnie z własnymi zasadami. W zakresie zbierania i przekazywania danych zdarzeń administrator oraz Meta
+            mogą działać jako współadministratorzy na zasadach określonych przez Meta.
+          </p>
+          <p>
+            Więcej informacji: <a href="https://www.facebook.com/privacy/policy/" rel="noreferrer" target="_blank">polityka prywatności Meta</a>
+            oraz <a href="https://www.facebook.com/legal/terms/businesstools" rel="noreferrer" target="_blank">warunki Narzędzi biznesowych Meta</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Google Maps</h2>
+          <p>
+            W stopce i na stronie kontaktowej osadzona jest mapa Google wskazująca siedzibę YAMURA. Wczytanie mapy
+            powoduje połączenie z usługami Google, które może obejmować przekazanie adresu IP, informacji o urządzeniu
+            i przeglądarce. Kliknięcie mapy otwiera wskazany adres bezpośrednio w Google Maps.
+          </p>
+          <p>
+            Mapa służy ułatwieniu odnalezienia siedziby i zaplanowania dojazdu. Więcej informacji zawiera
+            <a href="https://policies.google.com/privacy?hl=pl" rel="noreferrer" target="_blank">polityka prywatności Google</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Odbiorcy danych i przekazywanie poza EOG</h2>
+          <p>
+            Dane mogą być powierzane podmiotom obsługującym hosting, pocztę elektroniczną, infrastrukturę IT,
+            księgowość lub wsparcie prawne - wyłącznie w zakresie potrzebnym do realizacji tych usług. W przypadku
+            aktywowania narzędzi analitycznych lub reklamowych odbiorcami danych mogą być również Google Ireland
+            Limited i Meta Platforms Ireland Limited. Połączenie z mapą Google może także powodować przekazanie danych
+            technicznych do Google.
+          </p>
+          <p>
+            Dostawcy globalni mogą przetwarzać dane poza Europejskim Obszarem Gospodarczym. W takim przypadku
+            transfer odbywa się z wykorzystaniem mechanizmów przewidzianych w RODO, w szczególności decyzji
+            stwierdzającej odpowiedni stopień ochrony lub standardowych klauzul umownych.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Okres przechowywania</h2>
+          <ul>
+            <li>korespondencja - do zakończenia sprawy, a następnie do upływu okresu przedawnienia roszczeń;</li>
+            <li>dokumentacja podatkowa i księgowa - przez okres wymagany przepisami prawa;</li>
+            <li>logi techniczne - co do zasady do 30 dni, chyba że dłuższe przechowywanie jest potrzebne do wyjaśnienia incydentu;</li>
+            <li>dane GA4 - zgodnie z ustawieniami retencji usługi, nie dłużej niż jest to potrzebne do analityki;</li>
+            <li>dane Meta - zgodnie z ustawieniami narzędzia, zakresem zgody i zasadami Meta.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>10. Prawa użytkownika</h2>
+          <p>W zależności od podstawy przetwarzania użytkownik ma prawo do:</p>
+          <ul>
+            <li>dostępu do danych i otrzymania ich kopii;</li>
+            <li>sprostowania, usunięcia lub ograniczenia przetwarzania;</li>
+            <li>przenoszenia danych;</li>
+            <li>sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie;</li>
+            <li>wycofania zgody w dowolnym momencie;</li>
+            <li>wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+          </ul>
+          <p>
+            Żądania dotyczące danych można przesyłać na adres <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+            Informacje o składaniu skarg są dostępne na <a href="https://uodo.gov.pl/" rel="noreferrer" target="_blank">stronie UODO</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Profilowanie i zautomatyzowane decyzje</h2>
+          <p>
+            Dane z narzędzi analitycznych i reklamowych mogą służyć do tworzenia grup odbiorców i dopasowania reklam,
+            jeżeli użytkownik wyrazi na to zgodę. Administrator nie podejmuje wobec użytkowników decyzji wywołujących
+            skutki prawne lub podobnie istotnie na nich wpływających wyłącznie w sposób zautomatyzowany.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Zmiany polityki</h2>
+          <p>
+            Polityka może być aktualizowana, gdy zmienią się funkcje serwisu, dostawcy narzędzi lub przepisy.
+            Aktualna wersja jest zawsze publikowana pod tym adresem wraz z datą ostatniej aktualizacji.
+          </p>
+        </section>
+      </div>
     </div>
   </section>
 </BaseLayout>

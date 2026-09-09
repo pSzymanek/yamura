@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+
+const privacyHref = getLocalizedPath("/polityka-prywatnosci/", lang);
+const termsHref = getLocalizedPath("/regulamin/", lang);
+---
+
+<aside class="cookie-consent" data-cookie-consent data-cookie-ready="false" hidden aria-label={t.cookieConsent.ariaLabel}>
+  <div class="cookie-consent__summary" data-cookie-summary role="dialog" aria-labelledby="cookie-title">
+    <div>
+      <p class="cookie-consent__label">{t.cookieConsent.label}</p>
+      <h2 id="cookie-title">{t.cookieConsent.title}</h2>
+      <p>{t.cookieConsent.description}</p>
+      <p class="cookie-consent__links">
+        <a href={privacyHref}>{t.common.privacyPolicy}</a>
+        <a href={termsHref}>{t.common.terms}</a>
+      </p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button class="btn btn--light" type="button" data-cookie-reject>{t.cookieConsent.necessaryOnly}</button>
+      <button class="btn btn--light" type="button" data-cookie-customize>{t.cookieConsent.customize}</button>
+      <button class="btn btn--champagne" type="button" data-cookie-accept>{t.cookieConsent.acceptAll}</button>
+    </div>
+  </div>
+
+  <div class="cookie-consent__preferences" data-cookie-preferences role="dialog" aria-labelledby="cookie-settings-title" hidden>
+    <div class="cookie-consent__preferences-header">
+      <p class="cookie-consent__label">{t.cookieConsent.centerLabel}</p>
+      <h2 id="cookie-settings-title">{t.cookieConsent.centerTitle}</h2>
+      <p>{t.cookieConsent.centerDescription}</p>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>{t.cookieConsent.necessaryTitle}</h3>
+        <p>{t.cookieConsent.necessaryDesc}</p>
+      </div>
+      <label>
+        <span>{t.cookieConsent.necessaryAlwaysActive}</span>
+        <input type="checkbox" checked disabled aria-label={t.cookieConsent.necessaryAria} />
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>{t.cookieConsent.analyticsTitle}</h3>
+        <p>{t.cookieConsent.analyticsDesc}</p>
+      </div>
+      <label>
+        <span>GA4</span>
+        <input type="checkbox" data-cookie-analytics />
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>{t.cookieConsent.marketingTitle}</h3>
+        <p>{t.cookieConsent.marketingDesc}</p>
+      </div>
+      <label>
+        <span>Meta</span>
+        <input type="checkbox" data-cookie-marketing />
+      </label>
+    </div>
+
+    <div class="cookie-consent__actions cookie-consent__actions--preferences">
+      <button class="btn btn--light" type="button" data-cookie-back>{t.cookieConsent.back}</button>
+      <button class="btn btn--champagne" type="button" data-cookie-save>{t.cookieConsent.save}</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import "../../scripts/cookieConsent";
+</script>

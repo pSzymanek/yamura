@@ -52,7 +52,7 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 
 ## Edycja tresci
 
-- Dane firmy, SEO, telefon, e-mail i social media: `src/data/site.ts`
+- Dane firmy, SEO i e-mail: `src/data/site.ts`
 - Nawigacja: `src/data/navigation.ts`
 - Kategorie: `src/data/categories.ts`
 - Pasek korzysci: `src/data/benefits.ts`
@@ -60,19 +60,13 @@ Nazwy plikow sa powiazane z danymi w `src/data/categories.ts` i `src/data/projec
 - Etapy procesu: `src/data/process.ts`
 - Kolory: zmienne CSS w `src/styles/global.css`
 
-## Formularz
+## Kontakt i prywatnosc
 
-Formularz ma gotowy interfejs, walidacje HTML, komunikaty i blokade wielokrotnego wyslania. Nie udaje realnej wysylki, bo backend nie zostal skonfigurowany.
+Zapytania o realizacje sa kierowane na `meble@yamura.pl`, a oficjalny adres firmy uzywany w dokumentach to `biuro@yamura.pl`. Formularz korzysta z endpointu PHP w `public/api/`, wysyla wiadomosci przez SMTP Webd i automatycznie potwierdza klientowi przyjecie zapytania. Prywatna konfiguracja SMTP jest przechowywana poza publicznym katalogiem strony zgodnie z `FORMULARZ-KONTAKTOWY.md`. Serwis zawiera polityke prywatnosci, regulamin oraz panel zgody na cookies analityczne i marketingowe.
 
-Miejsce podlaczenia wysylki znajduje sie w `src/scripts/contactForm.ts`. W tym miejscu mozna dodac:
+Google Analytics 4 korzysta z identyfikatora `G-Z71J6BK0EW` i jest ladowany dopiero po udzieleniu zgody analitycznej. Meta Pixel korzysta z identyfikatora `1796015508487964` i jest ladowany dopiero po udzieleniu zgody marketingowej.
 
-- wlasne API,
-- Resend,
-- Formspree,
-- Web3Forms,
-- inne narzedzie formularzowe.
-
-Po podlaczeniu backendu zastap komentarz w `contactForm.ts` prawdziwym zapytaniem `fetch`, obsluz odpowiedz sukcesu i bledu, a dane dostepowe trzymaj w zmiennych srodowiskowych po stronie backendu.
+Mapa siedziby wskazuje adres Gabriela Narutowicza 15 w Chorzowie. Klikniecie mapy otwiera ten adres w Google Maps.
 
 ## Wdrozenie
 
@@ -112,9 +106,5 @@ pnpm build
 
 Do podmiany przed finalna publikacja:
 
-- prawdziwy telefon,
-- prawdziwy e-mail,
-- linki social media,
 - prawdziwe zdjecia realizacji,
-- ostateczna polityka prywatnosci,
-- backend formularza.
+- prawna akceptacja dokumentow przed uruchomieniem kampanii i analityki.

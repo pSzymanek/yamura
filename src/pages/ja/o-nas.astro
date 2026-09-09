@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import { useTranslations } from "../../i18n";
+
+const lang = "ja";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={t.aboutPage.seoTitle}
+  description={t.aboutPage.seoDescription}
+  lang={lang}
+>
+  <section class="story-hero" aria-labelledby="story-title">
+    <img src="/images/realizacje/30-pracownia-pila-formatowa.webp" alt="工房内でスライディングソーを用いて木材を精密切断する風景。" width="1672" height="941" fetchpriority="high" />
+    <div class="section-inner story-hero__inner">
+      <p class="eyebrow">{t.aboutPage.heroEyebrow}</p>
+      <h1 id="story-title">{t.aboutPage.heroTitle}</h1>
+      <p>{t.aboutPage.heroSubtitle}</p>
+    </div>
+  </section>
+
+  <article class="story section-light">
+    <div class="section-inner story__inner">
+      <header class="story__lead" data-reveal>
+        <p class="eyebrow">{t.aboutPage.leadEyebrow}</p>
+        <h2>{t.aboutPage.leadTitle}</h2>
+      </header>
+
+      <div class="story__chapter">
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter1.number}</span><p>{t.aboutPage.chapter1.label}</p></aside>
+        <div class="story__copy" data-reveal>
+          {t.aboutPage.chapter1.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+
+      <div class="story__chapter">
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter2.number}</span><p>{t.aboutPage.chapter2.label}</p></aside>
+        <div class="story__copy" data-reveal>
+          {t.aboutPage.chapter2.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+
+      <div class="story__chapter">
+        <aside aria-hidden="true"><span>{t.aboutPage.chapter3.number}</span><p>{t.aboutPage.chapter3.label}</p></aside>
+        <div class="story__copy" data-reveal>
+          {t.aboutPage.chapter3.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="story-finale">
+    <div class="section-inner" data-reveal>
+      <p>{t.aboutPage.finale.line1}</p>
+      <h2>{t.aboutPage.finale.line2}</h2>
+      <p>{t.aboutPage.finale.line3}</p>
+    </div>
+  </section>
+
+  <ContactCTA lang={lang} />
+</BaseLayout>

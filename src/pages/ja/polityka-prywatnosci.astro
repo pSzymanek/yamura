@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "ja";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.privacyPolicy} - YAMURA`}
+  description="YAMURAのプライバシーポリシー：個人情報管理者、お問い合わせフォーム、Google Maps、Cookie、Google Analytics 4、Meta広告ツールについて。"
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">プライバシー ＆ Cookie</p>
+        <h1>{t.common.privacyPolicy}</h1>
+        <p>本ウェブサイト（<strong>yamura.pl</strong>）のご利用に伴い処理される個人情報の取り扱い、利用目的、およびお客様の権利についてご説明いたします。</p>
+        <p class="legal__updated">最終更新日: 2026年8月8日</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. 個人情報管理者</h2>
+          <p>お客様の個人データ管理者は以下の通りです:</p>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. 処理の範囲、目的および法的根拠</h2>
+          <p>個人データは以下の目的のために処理されます:</p>
+          <ul>
+            <li>お問い合わせへの回答、オーダーメイドのお見積り作成、協業の開始 — 契約締結前のご要望に基づく措置または契約の履行のため（GDPR第6条第1項(b)）;</li>
+            <li>連絡の維持、サイトのセキュリティ確保、法的権利の行使および防御 — 管理者の正当な利益に基づく（GDPR第6条第1項(f)）;</li>
+            <li>税務および法定会計義務の履行 — 法的義務の遵守に基づく（GDPR第6条第1項(c)）;</li>
+            <li>アクセス解析および広告効果測定 — 分析/マーケティング用Cookieに対するお客様の任意の同意に基づく（GDPR第6条第1項(a)）。</li>
+          </ul>
+          <p>個人情報の提供は任意ですが、お問い合わせへの回答や見積り作成には必要となります。</p>
+        </section>
+
+        <section>
+          <h2>3. サーバーアクセスログ</h2>
+          <p>当サイトへのアクセス時、ホスティングサーバーはIPアドレス、アクセス日時、リクエストURL、ブラウザ種別、OS、HTTPレスポンスコード等の標準的な技術データを自動記録します。これらのデータはサイトの安定運用およびセキュリティ確保のみに使用されます。</p>
+        </section>
+
+        <section>
+          <h2>4. Cookieおよび類似技術</h2>
+          <p>通常のサイト閲覧にはマーケティングや解析用のCookieは使用されません。Google Analytics 4は明示的な同意を得た場合のみ有効化され、Meta Pixelも同様です。同意を拒否された場合でもサイトの基本機能は制限なくご利用いただけます。</p>
+          <p>同意はいつでもフッターの「Cookie設定」より簡単に変更または撤回できます。</p>
+        </section>
+
+        <section>
+          <h2>5. Google Analytics 4 および Meta ツール</h2>
+          <p>解析への同意に基づきGoogle Analytics 4（Google Ireland Limited）を利用して利用動向を把握します。マーケティングへの同意に基づきMeta Pixel（Meta Platforms Ireland Limited）を利用して広告効果を測定します。</p>
+        </section>
+
+        <section>
+          <h2>6. お客様の権利</h2>
+          <p>
+            GDPRに基づき、お客様は個人データの開示、訂正、削除、処理制限、データポータビリティ、異議申立、同意撤回の権利を有します。ご請求は <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

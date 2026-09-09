@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "ja";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.terms} - YAMURA`}
+  description="YAMURAウェブサイトの利用規約およびサービス概要。"
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">利用規約</p>
+        <h1>{t.common.terms}</h1>
+        <p>本規約は、<strong>yamura.pl</strong> ウェブサイトの利用に関する基本事項を定めます。</p>
+        <p class="legal__updated">制定日: 2026年8月8日</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. 運営事業者</h2>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. サイトの趣旨と免責</h2>
+          <p>当ウェブサイトは、YAMURAブランドの紹介、オーダーメイド特注家具の設計・製作サービス、施工実績、お問い合わせ窓口をご案内するものです。一般公開コンテンツは無料で閲覧いただけます。</p>
+          <p>サイトに掲載されている情報や画像は民法上の正式な契約申込（オファー）を構成するものではありません。お問い合わせの送信によって契約が成立することはなく、仕様・費用・納期は個別のお打ち合わせを経て正式に決定されます。</p>
+        </section>
+
+        <section>
+          <h2>3. 知的財産権</h2>
+          <p>当サイト上のデザイン、レイアウト、文章、商標、写真、CGパース等のすべての著作物は法律によって保護されています。私的使用の範囲を超えた無断転載・複製・商業利用は固く禁止されています。</p>
+        </section>
+
+        <section>
+          <h2>4. お問い合わせ窓口</h2>
+          <p>
+            サービスや協業に関するご相談は <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

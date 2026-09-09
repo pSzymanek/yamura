@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "zh";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.terms} - YAMURA`}
+  description="YAMURA 网站使用条款与服务说明。"
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">使用条款</p>
+        <h1>{t.common.terms}</h1>
+        <p>本条款规定了访问和使用 <strong>yamura.pl</strong> 网站的基本准则。</p>
+        <p class="legal__updated">生效日期：2026年8月8日</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. 服务提供商信息</h2>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. 网站性质与免责声明</h2>
+          <p>本网站用于展示 YAMURA 品牌形象、全屋高级定制家具服务范围、案例实景与联系渠道。公众访问完全免费。</p>
+          <p>网站上的所有信息、效果图及文字描述均不构成波兰民法典意义上的要约（Offer）。发送咨询不代表合同成立，具体方案、配置、工期与造价均需单独沟通确定。</p>
+        </section>
+
+        <section>
+          <h2>3. 知识产权声明</h2>
+          <p>网站的版式设计、文案、品牌标识、摄影图片、渲染效果图及所有资产均受法律保护。仅供个人非商业性浏览，未经书面许可不得擅自转载或商业使用。</p>
+        </section>
+
+        <section>
+          <h2>4. 联络与咨询</h2>
+          <p>
+            如对网站或定制服务有任何疑问，请随时联系 <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

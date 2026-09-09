@@ -17,8 +17,8 @@ export const benefits: Benefit[] = [
     icon: "service"
   },
   {
-    title: "Polska produkcja",
-    text: "Wspieramy lokalny rynek",
+    title: "Polska marka i produkcja",
+    text: "Polska firma i lokalne wykonanie",
     icon: "local"
   }
 ];

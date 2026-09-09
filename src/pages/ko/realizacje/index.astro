@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Projects from "../../../components/sections/Projects.astro";
+import ContactCTA from "../../../components/sections/ContactCTA.astro";
+import { useTranslations } from "../../../i18n";
+
+const lang = "ko";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={t.projectsPage.seoTitle}
+  description={t.projectsPage.seoDescription}
+  lang={lang}
+>
+  <section class="subpage-hero">
+    <div class="section-inner">
+      <p class="eyebrow">{t.projectsPage.heroEyebrow}</p>
+      <h1>{t.projectsPage.heroTitle}</h1>
+      <p>{t.projectsPage.heroSubtitle}</p>
+    </div>
+  </section>
+  <Projects lang={lang} />
+  <ContactCTA lang={lang} />
+</BaseLayout>

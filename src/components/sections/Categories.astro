@@ -1,17 +1,25 @@
 ---
-import { categories } from "../../data/categories";
 import CategoryCard from "../ui/CategoryCard.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="categories section-light" id="oferta" aria-labelledby="categories-title">
   <div class="section-inner">
     <SectionHeading
-      title="Meble na wymiar"
-      text="Od projektu po montaż - kompleksowa realizacja mebli do domu, biura i przestrzeni komercyjnych. Z dbałością o każdy detal."
+      eyebrow={t.categories.eyebrow}
+      title={t.categories.title}
+      text={t.categories.description}
     />
     <div class="categories__grid" aria-labelledby="categories-title">
-      {categories.map((category) => <CategoryCard category={category} />)}
+      {t.categories.items.map((category) => <CategoryCard category={category} lang={lang} />)}
     </div>
   </div>
 </section>

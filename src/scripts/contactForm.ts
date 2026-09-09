@@ -1,29 +1,94 @@
+declare global {
+  interface Window {
+    YAMURA_CONTACT_FORM_ENDPOINT?: string;
+  }
+}
+
 export {};
 
 const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-const formStatus = document.querySelector<HTMLElement>("[data-form-status]");
+const submit = form?.querySelector<HTMLButtonElement>("[data-contact-submit]");
+const statusElement = form?.querySelector<HTMLElement>("[data-contact-status]");
+const startedAt = Date.now();
 
-function setStatus(message: string, type: "error" | "success" | "neutral" = "neutral") {
-  if (!formStatus) return;
-  formStatus.textContent = message;
-  formStatus.dataset.type = type;
+function setStatus(message: string, state: "idle" | "success" | "error" = "idle") {
+  if (!statusElement) return;
+  statusElement.textContent = message;
+  statusElement.dataset.state = state;
+}
+
+function buildMailto(data: Record<string, string>, recipient: string) {
+  const subject = `Zapytanie o realizację YAMURA - ${data.projectType}`;
+  const body = [
+    `Imię i nazwisko: ${data.name}`,
+    `E-mail: ${data.email}`,
+    `Telefon: ${data.phone || "nie podano"}`,
+    `Rodzaj realizacji: ${data.projectType}`,
+    `Miejsce realizacji: ${data.location}`,
+    "",
+    data.message
+  ].join("\n");
+
+  return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
+  if (!form.reportValidity() || !submit) return;
 
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    setStatus("Uzupełnij wymagane pola formularza.", "error");
+  const formData = new FormData(form);
+  const data = Object.fromEntries(Array.from(formData.entries(), ([key, value]) => [key, String(value)]));
+
+  const successMsg = form.dataset.statusSuccess || "Dziękujemy. Wiadomość została wysłana.";
+  const errorMsg = form.dataset.statusError || "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.";
+  const mailtoNotice = form.dataset.statusMailto || "Otwieramy wiadomość w Twoim programie pocztowym.";
+  const submittingText = form.dataset.submittingText || "Wysyłanie...";
+  const submitText = form.dataset.submitText || "Wyślij zapytanie";
+
+  if (data.website) {
+    form.reset();
+    setStatus(successMsg, "success");
     return;
   }
 
-  const submit = form.querySelector<HTMLButtonElement>("[type='submit']");
-  submit?.setAttribute("disabled", "true");
-  setStatus("Formularz jest gotowy. Brakuje jeszcze podłączonego backendu wysyłki.", "error");
+  const recipient = form.dataset.recipient || "meble@yamura.pl";
+  const endpoint = window.YAMURA_CONTACT_FORM_ENDPOINT?.trim();
 
-  // Replace this block with a request to your API, Resend, Formspree or Web3Forms.
-  await new Promise((resolve) => window.setTimeout(resolve, 500));
+  if (!endpoint) {
+    setStatus(mailtoNotice);
+    window.location.href = buildMailto(data, recipient);
+    return;
+  }
 
-  submit?.removeAttribute("disabled");
+  submit.disabled = true;
+  submit.textContent = submittingText;
+  setStatus("");
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        ...data,
+        recipient,
+        source: window.location.href,
+        startedAt
+      }),
+      signal: controller.signal
+    });
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    form.reset();
+    setStatus(successMsg, "success");
+  } catch {
+    setStatus(errorMsg, "error");
+  } finally {
+    window.clearTimeout(timeout);
+    submit.disabled = false;
+    submit.textContent = submitText;
+  }
 });

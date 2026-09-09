@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "zh";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.privacyPolicy} - YAMURA`}
+  description="YAMURA 网站隐私政策：数据控制者、联系表单、Google Maps、Cookie、Google Analytics 4 以及 Meta 工具说明。"
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">隐私与 Cookie 政策</p>
+        <h1>{t.common.privacyPolicy}</h1>
+        <p>以下说明在访问和使用 <strong>yamura.pl</strong> 网站期间个人数据的处理范围、处理目的以及用户享有的法定权利。</p>
+        <p class="legal__updated">最近更新：2026年8月8日</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. 数据控制者</h2>
+          <p>您的个人数据控制者为：</p>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Poland<br />
+            NIP: {site.nip}<br />
+            REGON: {site.regon}<br />
+            Email: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. 处理范围、目的与法律依据</h2>
+          <p>个人数据可能出于以下目的进行处理：</p>
+          <ul>
+            <li>回复咨询、准备定制报价或开展商业合作 — 基于合同订立前的请求或合同履行（GDPR 第 6(1)(b) 条）；</li>
+            <li>维护沟通记录、保障网站安全以及主张或抗辩法律权利 — 基于控制者的合法利益（GDPR 第 6(1)(f) 条）；</li>
+            <li>履行法定税务和会计记账义务 — 基于法定义务（GDPR 第 6(1)(c) 条）；</li>
+            <li>分析网站访问情况及评估广告推广效果 — 严格基于您对分析/营销 Cookie 的自愿同意（GDPR 第 6(1)(a) 条）。</li>
+          </ul>
+          <p>提供个人数据完全自愿，但对于回复咨询、方案测算和订单执行是必要的。</p>
+        </section>
+
+        <section>
+          <h2>3. 服务器技术日志</h2>
+          <p>访问本网站时，服务器会自动记录标准技术日志（如 IP 地址、访问时间、请求 URL、浏览器与系统类型、HTTP 响应码）。该数据仅用于系统维护与安全诊断。</p>
+        </section>
+
+        <section>
+          <h2>4. Cookie 及类似技术</h2>
+          <p>基础浏览无需任何营销或分析 Cookie。仅在您明确同意后才会加载 Google Analytics 4 和 Meta Pixel。拒绝同意不影响正常浏览网站内容。</p>
+          <p>您可以随时通过页面底部的“Cookie 设置”链接修改或撤回同意。</p>
+        </section>
+
+        <section>
+          <h2>5. Google Analytics 4 与 Meta 工具</h2>
+          <p>在获得分析同意后，我们使用 Google Analytics 4 获取统计数据；在获得营销同意后，使用 Meta Pixel 评估推广效率。</p>
+        </section>
+
+        <section>
+          <h2>6. 用户法定权利</h2>
+          <p>
+            根据 GDPR，您享有查阅、更正、删除、限制处理、数据可携性、异议申诉及随时撤回同意的权利。相关诉求请发送至 <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

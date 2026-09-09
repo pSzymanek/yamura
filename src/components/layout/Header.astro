@@ -1,30 +1,46 @@
 ---
-import { navigation } from "../../data/navigation";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = getLocalizedPath("/", lang);
+const contactHref = getLocalizedPath("/kontakt/", lang);
 ---
 
 <header class="site-header" data-header>
-  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <a class="skip-link" href="#main">{t.common.skipToContent}</a>
   <div class="site-header__inner">
-    <a class="site-header__logo" href="/" aria-label="YAMURA - strona główna">
+    <a class="site-header__logo" href={homeHref} aria-label={t.common.homeAriaLabel}>
       <img src="/images/logo/yamura-light.png" alt="YAMURA" width="250" height="62" />
     </a>
-    <nav class="site-header__nav" aria-label="Nawigacja główna">
-      {navigation.map((item) => (
+    <nav class="site-header__nav" aria-label={t.common.mainNavAriaLabel}>
+      {t.navigation.map((item) => (
         <a href={item.href}>{item.label}</a>
       ))}
     </nav>
-    <a class="site-header__quote" href="/kontakt/">Wyceń projekt</a>
+    <div class="site-header__actions">
+      <LanguageSwitcher lang={lang} currentPath={Astro.url.pathname} />
+      <a class="site-header__quote" href={contactHref}>{t.common.quoteButton}</a>
+    </div>
     <button class="site-header__menu" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false">
-      <span>Menu</span>
+      <span>{t.common.menuButton}</span>
       <i aria-hidden="true"></i>
     </button>
   </div>
   <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-    <nav aria-label="Nawigacja mobilna">
-      {navigation.map((item) => (
+    <nav aria-label={t.common.mobileNavAriaLabel}>
+      {t.navigation.map((item) => (
         <a href={item.href}>{item.label}</a>
       ))}
-      <a class="mobile-menu__quote" href="/kontakt/">Wyceń projekt</a>
+      <div class="mobile-menu__lang">
+        <LanguageSwitcher lang={lang} currentPath={Astro.url.pathname} isMobile />
+      </div>
+      <a class="mobile-menu__quote" href={contactHref}>{t.common.quoteButton}</a>
     </nav>
   </div>
 </header>

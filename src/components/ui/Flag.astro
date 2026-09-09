@@ -1,0 +1,124 @@
+---
+import type { Locale } from "../../i18n/types";
+
+type Props = {
+  code: Locale;
+  class?: string;
+};
+
+const { code, class: className = "w-5 h-3.5" } = Astro.props;
+---
+
+{code === "pl" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <g fill-rule="evenodd">
+      <path fill="#fff" d="M640 480H0V0h640z" />
+      <path fill="#dc143c" d="M640 480H0V240h640z" />
+    </g>
+  </svg>
+)}
+
+{code === "en" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <path fill="#012169" d="M0 0h640v480H0z" />
+    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z" />
+    <path fill="#C8102E" d="m424 288 216 159v33L380 288h44zm-208 0-216 161v31l260-192h-44zM216 192 0 31V0l260 192h-44zm208 0L640 33V0l-260 192h44z" />
+    <path fill="#FFF" d="M240 0h160v480H240zM0 160h640v160H0z" />
+    <path fill="#C8102E" d="M266 0h108v480H266zM0 186h640v108H0z" />
+  </svg>
+)}
+
+{code === "de" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <path fill="#ffce00" d="M0 320h640v160H0z" />
+    <path fill="#000" d="M0 0h640v160H0z" />
+    <path fill="#d00" d="M0 160h640v160H0z" />
+  </svg>
+)}
+
+{code === "ko" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <rect width="640" height="480" fill="#fff" />
+    <g transform="translate(320 240) scale(1.15)">
+      {/* Taegeuk */}
+      <g transform="rotate(-33.69)">
+        <path d="M-100 0A100 100 0 0 1 100 0 50 50 0 0 1 0 0 50 50 0 0 0-100 0z" fill="#cd2e3a" />
+        <path d="M100 0A100 100 0 0 1-100 0 50 50 0 0 1 0 0 50 50 0 0 0 100 0z" fill="#0047a0" />
+      </g>
+      {/* Trigrams */}
+      {/* Top-left: Geon */}
+      <g transform="rotate(-33.69) translate(-150 0) rotate(90)">
+        <rect x="-35" y="-12" width="70" height="5" fill="#000" />
+        <rect x="-35" y="-2" width="70" height="5" fill="#000" />
+        <rect x="-35" y="8" width="70" height="5" fill="#000" />
+      </g>
+      {/* Bottom-right: Gon */}
+      <g transform="rotate(-33.69) translate(150 0) rotate(90)">
+        <rect x="-35" y="-12" width="32" height="5" fill="#000" />
+        <rect x="3" y="-12" width="32" height="5" fill="#000" />
+        <rect x="-35" y="-2" width="32" height="5" fill="#000" />
+        <rect x="3" y="-2" width="32" height="5" fill="#000" />
+        <rect x="-35" y="8" width="32" height="5" fill="#000" />
+        <rect x="3" y="8" width="32" height="5" fill="#000" />
+      </g>
+      {/* Top-right: Gam */}
+      <g transform="rotate(56.31) translate(-150 0) rotate(90)">
+        <rect x="-35" y="-12" width="32" height="5" fill="#000" />
+        <rect x="3" y="-12" width="32" height="5" fill="#000" />
+        <rect x="-35" y="-2" width="70" height="5" fill="#000" />
+        <rect x="-35" y="8" width="32" height="5" fill="#000" />
+        <rect x="3" y="8" width="32" height="5" fill="#000" />
+      </g>
+      {/* Bottom-left: Ri */}
+      <g transform="rotate(56.31) translate(150 0) rotate(90)">
+        <rect x="-35" y="-12" width="70" height="5" fill="#000" />
+        <rect x="-35" y="-2" width="32" height="5" fill="#000" />
+        <rect x="3" y="-2" width="32" height="5" fill="#000" />
+        <rect x="-35" y="8" width="70" height="5" fill="#000" />
+      </g>
+    </g>
+  </svg>
+)}
+
+{code === "zh" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <rect width="640" height="480" fill="#de2910" />
+    <g transform="translate(106.67 120) scale(48)">
+      <polygon
+        fill="#ffde00"
+        points="0,-1 0.5878,0.8090 -0.9511,-0.3090 0.9511,-0.3090 -0.5878,0.8090"
+      />
+    </g>
+    <g transform="translate(213.33 48) rotate(-120.96) scale(16)">
+      <polygon
+        fill="#ffde00"
+        points="0,-1 0.5878,0.8090 -0.9511,-0.3090 0.9511,-0.3090 -0.5878,0.8090"
+      />
+    </g>
+    <g transform="translate(256 96) rotate(-98.13) scale(16)">
+      <polygon
+        fill="#ffde00"
+        points="0,-1 0.5878,0.8090 -0.9511,-0.3090 0.9511,-0.3090 -0.5878,0.8090"
+      />
+    </g>
+    <g transform="translate(256 168) rotate(-74.05) scale(16)">
+      <polygon
+        fill="#ffde00"
+        points="0,-1 0.5878,0.8090 -0.9511,-0.3090 0.9511,-0.3090 -0.5878,0.8090"
+      />
+    </g>
+    <g transform="translate(213.33 216) rotate(-51.34) scale(16)">
+      <polygon
+        fill="#ffde00"
+        points="0,-1 0.5878,0.8090 -0.9511,-0.3090 0.9511,-0.3090 -0.5878,0.8090"
+      />
+    </g>
+  </svg>
+)}
+
+{code === "ja" && (
+  <svg class={className} viewBox="0 0 640 480" aria-hidden="true" focusable="false">
+    <rect width="640" height="480" fill="#ffffff" />
+    <circle cx="320" cy="240" r="144" fill="#bc002d" />
+  </svg>
+)}

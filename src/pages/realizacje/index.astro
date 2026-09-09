@@ -2,16 +2,36 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Projects from "../../components/sections/Projects.astro";
 import ContactCTA from "../../components/sections/ContactCTA.astro";
+import { useTranslations } from "../../i18n";
+
+const lang = "pl";
+const t = useTranslations(lang);
 ---
 
-<BaseLayout title="Realizacje YAMURA - meble na wymiar">
+<BaseLayout
+  title={t.projectsPage.seoTitle}
+  description={t.projectsPage.seoDescription}
+  lang={lang}
+>
   <section class="subpage-hero">
     <div class="section-inner">
-      <p class="eyebrow">Realizacje</p>
-      <h1>Wybrane projekty mebli na wymiar</h1>
-      <p>Przykładowe kierunki stylistyczne: drewno, jasne zabudowy, kolorowe fronty, łazienki, biura i garderoby.</p>
+      <p class="eyebrow">{t.projectsPage.heroEyebrow}</p>
+      <h1>{t.projectsPage.heroTitle}</h1>
+      <p>{t.projectsPage.heroSubtitle}</p>
     </div>
   </section>
-  <Projects />
-  <ContactCTA />
+  <section class="section-inner" style="margin-top: -20px; margin-bottom: 40px;">
+    <div style="background: #1f1d1a; border: 1px solid #3d3934; border-radius: 4px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div>
+        <span style="font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: #b99277; font-weight: 700; display: block; margin-bottom: 4px;">Strefa Klienta</span>
+        <strong style="color: #fff; font-size: 1.15rem; font-family: Georgia, serif; font-weight: 400;">Śledzisz realizację swojego zamówienia?</strong>
+        <p style="margin: 4px 0 0; color: #aaa39b; font-size: 0.85rem;">Sprawdź bieżący etap prac stolarskich, licznik dni do ukończenia oraz dokumentację fotograficzną.</p>
+      </div>
+      <a href="http://localhost:3000/r/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #b99277; color: #1a1714; font-weight: 700; font-size: 0.82rem; border-radius: 2px; text-decoration: none;">
+        Przejdź do Dziennika Realizacji →
+      </a>
+    </div>
+  </section>
+  <Projects lang={lang} />
+  <ContactCTA lang={lang} />
 </BaseLayout>

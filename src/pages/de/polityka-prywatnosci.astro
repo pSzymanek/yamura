@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const lang = "de";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t.common.privacyPolicy} - YAMURA`}
+  description="Datenschutzerklärung von YAMURA: Verantwortlicher, Kontaktformular, Google Maps, Cookies, Google Analytics 4 und Meta-Tools."
+  lang={lang}
+>
+  <section class="legal section-light">
+    <div class="section-inner legal__inner">
+      <header class="legal__header">
+        <p class="eyebrow">Datenschutz & Cookies</p>
+        <h1>{t.common.privacyPolicy}</h1>
+        <p>
+          Nachfolgend informieren wir Sie darüber, welche Daten bei der Nutzung der Website <strong>yamura.pl</strong> verarbeitet werden, zu welchen Zwecken und welche Rechte Ihnen zustehen.
+        </p>
+        <p class="legal__updated">Stand: 8. August 2026</p>
+      </header>
+
+      <div class="legal__content">
+        <section>
+          <h2>1. Verantwortlicher</h2>
+          <p>Verantwortlicher für die Datenverarbeitung ist:</p>
+          <address class="legal__address">
+            <strong>{site.owner}</strong><br />
+            {site.registeredAddress.street}<br />
+            {site.registeredAddress.postalCode} {site.registeredAddress.city}, Polen<br />
+            NIP (USt-IdNr.): {site.nip}<br />
+            REGON: {site.regon}<br />
+            E-Mail: <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>
+          </address>
+        </section>
+
+        <section>
+          <h2>2. Umfang, Zwecke und Rechtsgrundlagen der Verarbeitung</h2>
+          <p>Personenbezogene Daten können zu folgenden Zwecken verarbeitet werden:</p>
+          <ul>
+            <li>
+              Beantwortung von Anfragen, Erstellung von Angeboten oder Anbahnung von Kooperationen — zur Durchführung vorvertraglicher Maßnahmen auf Anfrage oder zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO);
+            </li>
+            <li>
+              Führung der Korrespondenz, Gewährleistung der Websitesicherheit und Geltendmachung bzw. Abwehr von Rechtsansprüchen — auf Basis berechtigter Interessen des Verantwortlichen (Art. 6 Abs. 1 lit. f DSGVO);
+            </li>
+            <li>
+              Erfüllung steuerlicher und buchhalterischer Pflichten — auf Basis gesetzlicher Verpflichtungen (Art. 6 Abs. 1 lit. c DSGVO);
+            </li>
+            <li>
+              Webanalyse und Werbeerfolgsmessung — ausschließlich nach freiwilliger Einwilligung in Analyse- bzw. Marketing-Cookies (Art. 6 Abs. 1 lit. a DSGVO).
+            </li>
+          </ul>
+          <p>
+            Die Bereitstellung personenbezogener Daten ist freiwillig, jedoch für die Bearbeitung Ihrer Anfrage erforderlich.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Technische Protokolldateien</h2>
+          <p>
+            Beim Aufruf unserer Website speichert der Server automatisch Verbindungsdaten wie IP-Adresse, Datum und Uhrzeit, aufgerufene URL, Browsertyp, Betriebssystem und Statuscode. Diese Daten dienen der Sicherheit und dem fehlerfreien Betrieb.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Cookies & Webtechnologien</h2>
+          <p>
+            Die Nutzung unserer Website erfordert keine Analyse- oder Werbe-Cookies. Google Analytics 4 und Meta Pixel werden erst nach Ihrer ausdrücklichen Einwilligung geladen.
+          </p>
+          <p>
+            Ihre Einstellungen können Sie jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile anpassen oder widerrufen.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Google Analytics 4 & Meta Pixel</h2>
+          <p>
+            Bei erteilter Einwilligung nutzen wir Google Analytics 4 (Google Ireland Limited) zur Webseitenanalyse und Meta Pixel (Meta Platforms Ireland Limited) zur Erfolgsmessung unserer Marketingaktivitäten.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Ihre Rechte</h2>
+          <p>
+            Ihnen stehen nach der DSGVO die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch zu. Anfragen richten Sie bitte an <a href={`mailto:${site.officialEmail}`}>{site.officialEmail}</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

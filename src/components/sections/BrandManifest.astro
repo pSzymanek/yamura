@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl, useTranslations, type Locale } from "../../i18n";
+
+type Props = {
+  lang?: Locale;
+};
+
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="brand-manifest section-light" aria-labelledby="brand-manifest-title">
+  <div class="section-inner brand-manifest__inner">
+    <div class="brand-manifest__intro" data-reveal>
+      <p class="brand-manifest__label">
+        <span aria-hidden="true"></span>
+        {t.brandManifest.label}
+      </p>
+      <h2 id="brand-manifest-title" set:html={t.brandManifest.title} />
+      <p>
+        {t.brandManifest.description}
+      </p>
+    </div>
+
+    <ol class="brand-manifest__principles" aria-label={t.brandManifest.principlesAriaLabel}>
+      {t.brandManifest.principles.map((principle) => (
+        <li data-reveal>
+          <span>{principle.number}</span>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

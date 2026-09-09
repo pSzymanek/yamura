@@ -2,6 +2,7 @@ node_modules/
 .astro/
 dist/
 export/
+server/yamura-contact-secrets.php
 
 .env
 .env.*
@@ -13,3 +14,6 @@ export/
 
 .DS_Store
 Thumbs.db
+.codex-remote-attachments/
+*.zip
+
